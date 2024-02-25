@@ -229,8 +229,12 @@
             var link = "https://www.instagram.com/fahmiprdn16";
             window.location.href = link;
         }
+ function displayCurrentDateTime() {
+            updateDateTime(); // Panggil fungsi untuk pertama kali
+            setInterval(updateDateTime, 1000); // Perbarui setiap 1000 milidetik (1 detik)
+        }
 
-        function displayCurrentDateTime() {
+        function updateDateTime() {
             var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'Asia/Jakarta' };
             var currentDateTime = new Date().toLocaleString('en-US', options);
             var dateTimeContainer = document.getElementById('currentDateTime');
