@@ -16,6 +16,20 @@
             margin: 0;
             font-family: 'Arial', sans-serif;
             color: white;
+            position: relative;
+        }
+
+        #datetime-container {
+            background-color: rgba(0, 0, 0, 0.5);
+            padding: 10px;
+            position: fixed;
+            top: 0;
+            width: 100%;
+            text-align: center;
+        }
+
+        #currentDateTime {
+            margin: 0;
         }
 
         .container {
@@ -54,14 +68,12 @@
         .container h3 {
             font-family: 'Calibri', Times, serif;
             font-size: 16px;
-            /* Ganti dengan ukuran font yang diinginkan */
             font-style: italic;
         }
 
         .custom-text {
             font-family: 'Calibri', cursive;
             font-size: 16px;
-            /* Ganti dengan ukuran font yang diinginkan */
             font-style: italic;
         }
 
@@ -84,6 +96,10 @@
 
 <body>
 
+    <div id="datetime-container">
+        <p id="currentDateTime"></p>
+    </div>
+
     <div id="question1" class="container dialog" style="display: none;">
         <p>Selamat datang manusia, mungkin kamu adalah teman saya atau kenal dengan saya. Kalo boleh tau nama kamu siapa?</p>
         <input type="text" id="answer1">
@@ -105,7 +121,6 @@
     <div id="question4" class="container dialog" style="display: none;">
         <p>Oke deh kalo gitu, ada sesuatu nih buat kamu</p>
         <p id="answer4"></p>
-        <!-- Menghilangkan tombol input -->
         <button onclick="handleNextQuestion('question4', 'result')">Next</button>
     </div>
 
@@ -141,9 +156,9 @@
                 dialog.style.display = 'none';
             }
         }
+
         function handleNextQuestion(currentQuestion, nextQuestion) {
             var answer = document.getElementById('answer' + currentQuestion.charAt(currentQuestion.length - 1)).value;
-            // Do additional processing if needed with the answer
             if (nextQuestion === 'result') {
                 var answer1 = document.getElementById('answer1').value;
                 var answer2 = document.getElementById('answer2').value;
@@ -159,7 +174,6 @@
         function displayResult(answer1, answer2, answer3, answer4) {
             var resultContainer = document.getElementById('resultContent');
             if (resultContainer) {
-                // Process the answers and display the result
                 const instagramUsername = "fahmiprdn16";
                 resultContainer.innerHTML = "<h2>Hai, kamu adalah pengunjung profil Instagram @" + instagramUsername + "</h2>";
                 resultContainer.innerHTML += "<pre>";
@@ -171,65 +185,63 @@
                 resultContainer.innerHTML += "<p style='font-family: Consolas;'>BTW makasih ya " + answer1 +
                     " atas kunjungannya wkwkw... <br><br><br><br></p>";
 
-                     resultContainer.innerHTML += "<p style='font-family: Arial;font-size: 15px;'>ada sedikit kata-kata hari ini buat kamu :</p>";
+                resultContainer.innerHTML += "<p style='font-family: Arial;font-size: 15px;'>ada sedikit kata-kata hari ini buat kamu :</p>";
 
-
-
-                // Array of kata-kata
                 const kataKata = [
                     "\"Jika untuk bermimpi saja kamu takut, maka kamu adalah orang yang tidak tahu arah masa depanmu\"",
                     "\"Seburuk apapun masa lalumu, itu telah berlalu. Sekarang, fokus untuk kebahagiaan dirimu di masa depan\"",
                     "\"Cintailah orang yang kamu lihat di depan cermin\"",
-                   "\"Sejatinya seseorang hanya suka menilai buruk orang lain, namun tidak suka dirinya dinilai buruk. Suka mengritik orang lain, namun tidak suka dikritik orang lain\"",
-                   "\"Hidup tak semudah membalikkan telapak tangan, tetapi dengan telapak tangan kita dapat mengubah hidup kita jauh lebih baik lagi\"",
-                   "\"Kemarin adalah kenangan, esok adalah apa yang akan dicapai, hari ini adalah kenyataan yang harus dijalani dengan sebaik-baiknya\"",
-                   "\"Kamu tidak bisa memulai bab selanjutnya dalam hidupmu jika kamu terus membaca kembali yang terakhir\"",
-                   "\"Salah satu momen paling membahagiakan adalah ketika kamu menemukan keberanian untuk melepaskan apa yang tidak bisa kamu ubah\"",
-                   "\"Hidup adalah tentang bertahan dan belajar menerima, atau pergi dan belajar melupakan\"",
-                   "\"Salah satu cara paling sederhana untuk tetap bahagia adalah melepaskan hal-hal yang membuatmu sedih\"",
+                    "\"Sejatinya seseorang hanya suka menilai buruk orang lain, namun tidak suka dirinya dinilai buruk. Suka mengritik orang lain, namun tidak suka dikritik orang lain\"",
+                    "\"Hidup tak semudah membalikkan telapak tangan, tetapi dengan telapak tangan kita dapat mengubah hidup kita jauh lebih baik lagi\"",
+                    "\"Kemarin adalah kenangan, esok adalah apa yang akan dicapai, hari ini adalah kenyataan yang harus dijalani dengan sebaik-baiknya\"",
+                    "\"Kamu tidak bisa memulai bab selanjutnya dalam hidupmu jika kamu terus membaca kembali yang terakhir\"",
+                    "\"Salah satu momen paling membahagiakan adalah ketika kamu menemukan keberanian untuk melepaskan apa yang tidak bisa kamu ubah\"",
+                    "\"Hidup adalah tentang bertahan dan belajar menerima, atau pergi dan belajar melupakan\"",
+                    "\"Salah satu cara paling sederhana untuk tetap bahagia adalah melepaskan hal-hal yang membuatmu sedih\"",
 
                 ];
 
-                // Ambil kata acak dari array
                 const kataAcak = kataKata[Math.floor(Math.random() * kataKata.length)];
 
                 resultContainer.innerHTML += "<h3>" + kataAcak + "</h3>";
 
-                // Display the result dialog
                 closeDialog('question4');
                 openDialog('result');
             }
         }
 
-                   function displayThankYouMessage() {
-                document.write("<div class='container'><h4>Kirain kita udah saling kenal ternyata belum ya?<br>Yaudah deh... makasih ya karena udah mampir ke profil Instagram saya<br><br>Pesan untuk kamu :<br><span class='custom-text'>\"Jika datangmu kemari hanya sekedar bosan dan penasaran, maka pergilah\"</span></h4>");
+        function displayThankYouMessage() {
+            document.write("<div class='container'><h4>Kirain kita udah saling kenal ternyata belum ya?<br>Yaudah deh... makasih ya karena udah mampir ke profil Instagram saya<br><br>Pesan untuk kamu :<br><span class='custom-text'>\"Jika datangmu kemari hanya sekedar bosan dan penasaran, maka pergilah\"</span></h4>");
 
-                // Menambahkan tombol "Pergi" dengan onclick event
-                document.write("<button onclick='openAndCloseWindow()'>Pergi</button>");
+            document.write("<button onclick='openAndCloseWindow()'>Pergi</button>");
 
-                // Menambahkan spasi antara tombol
-                document.write("<span style='margin-right: 20px;'></span>");
+            document.write("<span style='margin-right: 20px;'></span>");
 
-                // Menambahkan tombol "Tidak Mau Pergi" dengan onclick event
-                document.write("<button onclick='goToLink()'>Gak Mau Pergi</button></div>");
+            document.write("<button onclick='goToLink()'>Gak Mau Pergi</button></div>");
+        }
+
+        function openAndCloseWindow() {
+            var link = "https://www.instagram.com";
+            window.location.href = link;
+        }
+
+        function goToLink() {
+            var link = "https://www.instagram.com/fahmiprdn16";
+            window.location.href = link;
+        }
+
+        function displayCurrentDateTime() {
+            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'Asia/Jakarta' };
+            var currentDateTime = new Date().toLocaleString('en-US', options);
+            var dateTimeContainer = document.getElementById('currentDateTime');
+            if (dateTimeContainer) {
+                dateTimeContainer.innerHTML = "" + currentDateTime;
             }
+        }
 
-            // Fungsi untuk membuka jendela dan menutupnya
-            function openAndCloseWindow() {
-                // Membuka jendela baru
-                var link = "https://www.instagram.com";
-                window.location.href = link;
-            }
+        displayCurrentDateTime();
+    </script>
 
-            // Fungsi untuk mengarahkan ke halaman dengan link
-            function goToLink() {
-                // Mengganti URL dengan tautan yang diinginkan
-                var link = "https://www.instagram.com/fahmiprdn16";
-                window.location.href = link;
-            }
+</body>
 
-                </script>
-
-            </body>
-
-            </html>
+</html>
