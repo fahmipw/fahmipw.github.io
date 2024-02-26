@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <title>Hai, selamat datang :)</title>
-   
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <style>
         body {
             background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b9e12ff-b59c-4d5f-9e56-c9eeee379fc9/de16dii-8f2efd4b-48db-4214-b792-e8444870f93a.jpg/v1/fit/w_828,h_1210,q_70,strp/patience_and_perseverance__by_pascalcampion_de16dii-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTQxNyIsInBhdGgiOiJcL2ZcLzViOWUxMmZmLWI1OWMtNGQ1Zi05ZTU2LWM5ZWVlZTM3OWZjOVwvZGUxNmRpaS04ZjJlZmQ0Yi00OGRiLTQyMTQtYjc5Mi1lODQ0NDg3MGY5M2EuanBnIiwid2lkdGgiOiI8PTk3MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.tmVQndo19bztqY8DjgjCvAkiEfzcv055fGASvqgJIxc');
@@ -176,14 +176,15 @@
             if (resultContainer) {
                 const instagramUsername = "fahmiprdn16";
                 resultContainer.innerHTML = "<h2>Hai, kamu adalah pengunjung profil Instagram @" + instagramUsername + "</h2>";
-                resultContainer.innerHTML += "<pre>";
-                resultContainer.innerHTML += "<br><span style='font-family: Consolas;'>Halo, " + answer1 + " kamu sedang berkunjung ke profil Instagramnya Fahmi,</span>";
-                resultContainer.innerHTML += "<br><span style='font-family: Consolas;'>selanjutnya kamu sudah mengenal Fahmi sejak " + answer2 +
-                    ", dan sepertinya Fahmi mengetahui siapa dirimu</span><br>";
-                resultContainer.innerHTML += "<span style='font-family: Consolas;'>Dan ketika kamu ditanya tentang ngestalk tapi jawaban kamu malah " + answer3 + "</span>";
+                resultContainer.innerHTML += "<br><pre>";
+                resultContainer.innerHTML += "<span style='font-family: Consolas; text-align: left;'>Halo " + answer1 + ", kamu sedang berkunjung ke profil Instagramnya Fahmi. </span>";
+                resultContainer.innerHTML += "<span style='font-family: Consolas; text-align: left;'>Kemudian kamu sudah mengenal Fahmi sejak " + answer2 +
+                    ", dan sepertinya Fahmi mengetahui siapa dirimu. </span>";
+                resultContainer.innerHTML += "<span style='font-family: Consolas; text-align: left;'>Dan ketika kamu ditanya tentang ngestalk tapi jawaban kamu malah " + answer3 + "</span>";
+
 
                 resultContainer.innerHTML += "<p style='font-family: Consolas;'>BTW makasih ya " + answer1 +
-                    " atas kunjungannya wkwkw... <br><br><br><br></p>";
+                    " atas kunjungannya wkwkw... <br><br><br></p>";
 
                 resultContainer.innerHTML += "<p style='font-family: Arial;font-size: 15px;'>ada sedikit kata-kata hari ini buat kamu :</p>";
 
