@@ -5,9 +5,10 @@
     <meta charset="UTF-8">
     <title>Hai, selamat datang :)</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
         body {
-            background-image: url('https://images-wixmp-ed30a86b8c4ca887773594c2.wixmp.com/f/5b9e12ff-b59c-4d5f-9e56-c9eeee379fc9/de16dii-8f2efd4b-48db-4214-b792-e8444870f93a.jpg/v1/fit/w_828,h_1210,q_70,strp/patience_and_perseverance__by_pascalcampion_de16dii-414w-2x.jpg?token=eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJzdWIiOiJ1cm46YXBwOjdlMGQxODg5ODIyNjQzNzNhNWYwZDQxNWVhMGQyNmUwIiwiaXNzIjoidXJuOmFwcDo3ZTBkMTg4OTgyMjY0MzczYTVmMGQ0MTVlYTBkMjZlMCIsIm9iaiI6W1t7ImhlaWdodCI6Ijw9MTQxNyIsInBhdGgiOiJcL2ZcLzViOWUxMmZmLWI1OWMtNGQ1Zi05ZTU2LWM5ZWVlZTM3OWZjOVwvZGUxNmRpaS04ZjJlZmQ0Yi00OGRiLTQyMTQtYjc5Mi1lODQ0NDg3MGY5M2EuanBnIiwid2lkdGgiOiI8PTk3MCJ9XV0sImF1ZCI6WyJ1cm46c2VydmljZTppbWFnZS5vcGVyYXRpb25zIl19.tmVQndo19bztqY8DjgjCvAkiEfzcv055fGASvqgJIxc');
+            background-image: url('https://images3.alphacoders.com/132/1322308.jpeg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -91,6 +92,24 @@
             width: 100%;
             text-align: center;
         }
+
+        /* Mengubah ukuran SweetAlert2 */
+        .swal2-popup {
+            width: 300px !important; /* Lebar kotak */
+            font-size: 16px !important; /* Ukuran font */
+        }
+
+        .swal2-title {
+            font-size: 18px !important; /* Ukuran font judul */
+        }
+
+        .swal2-content {
+            font-size: 14px !important; /* Ukuran font konten */
+        }
+
+        .swal2-actions {
+            font-size: 14px !important; /* Ukuran font tombol */
+        }
     </style>
 </head>
 
@@ -101,7 +120,7 @@
     </div>
 
     <div id="question1" class="container dialog" style="display: none;">
-        <p>Selamat datang manusia, mungkin kamu adalah teman saya atau kenal dengan saya. Kalo boleh tau nama kamu siapa?</p>
+        <p>Oke deh kalo kenal, mungkin kamu adalah teman saya atau kenal dengan saya. Kalo boleh tau nama kamu siapa?</p>
         <input type="text" id="answer1">
         <button onclick="handleNextQuestion('question1', 'question2')">Next</button>
     </div>
@@ -120,7 +139,6 @@
 
     <div id="question4" class="container dialog" style="display: none;">
         <p>Oke deh kalo gitu, ada sesuatu nih buat kamu</p>
-        <p id="answer4"></p>
         <button onclick="handleNextQuestion('question4', 'result')">Next</button>
     </div>
 
@@ -133,14 +151,23 @@
                 style="color: #3498db;">fahmiprdn16</a></p>
     </div>
 
+    <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
     <script language="JavaScript" type="text/javascript">
         // Start the interaction
-        var yakin = confirm("Apakah kamu kenal saya?");
-        if (yakin) {
-            window.alert = "";
-            openDialog('question1');
-        } else {
-            displayThankYouMessage();
+        function startInteraction() {
+            Swal.fire({
+                title: '<span style="font-size: 15px;">Selamat datang manusia bumi👋<p>Apakah kamu kenal saya?</span></p>',
+                icon: 'question',
+                showCancelButton: true,
+                confirmButtonText: 'Ya',
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    openDialog('question1');
+                } else {
+                    displayThankYouMessage();
+                }
+            });
         }
 
         function openDialog(dialogId) {
@@ -158,34 +185,38 @@
         }
 
         function handleNextQuestion(currentQuestion, nextQuestion) {
-            var answer = document.getElementById('answer' + currentQuestion.charAt(currentQuestion.length - 1)).value;
+            var input = document.getElementById('answer' + currentQuestion.charAt(currentQuestion.length - 1));
+            if (input && input.value.trim() === '') {
+                Swal.fire({
+                    title: 'Oops!',
+                    text: 'Harus dijawab dulu',
+                    icon: 'warning',
+                    confirmButtonText: 'OK'
+                });
+                return;
+            }
+
             if (nextQuestion === 'result') {
                 var answer1 = document.getElementById('answer1').value;
                 var answer2 = document.getElementById('answer2').value;
                 var answer3 = document.getElementById('answer3').value;
-                var answer4 = document.getElementById('answer4').value;
-                displayResult(answer1, answer2, answer3, answer4);
+                displayResult(answer1, answer2, answer3);
             } else {
                 closeDialog(currentQuestion);
                 openDialog(nextQuestion);
             }
         }
 
-        function displayResult(answer1, answer2, answer3, answer4) {
+        function displayResult(answer1, answer2, answer3) {
             var resultContainer = document.getElementById('resultContent');
             if (resultContainer) {
                 const instagramUsername = "fahmiprdn16";
                 resultContainer.innerHTML = "<h2>Hai, kamu adalah pengunjung profil Instagram @" + instagramUsername + "</h2>";
                 resultContainer.innerHTML += "<br><pre>";
                 resultContainer.innerHTML += "<span style='font-family: Consolas; text-align: left;'>Halo " + answer1 + ", kamu sedang berkunjung ke profil Instagramnya Fahmi. </span>";
-                resultContainer.innerHTML += "<span style='font-family: Consolas; text-align: left;'>Kemudian kamu sudah mengenal Fahmi sejak " + answer2 +
-                    ", dan sepertinya Fahmi mengetahui siapa dirimu. </span>";
+                resultContainer.innerHTML += "<span style='font-family: Consolas; text-align: left;'>Kemudian kamu sudah mengenal Fahmi sejak " + answer2 + ", dan sepertinya Fahmi mengetahui siapa dirimu. </span>";
                 resultContainer.innerHTML += "<span style='font-family: Consolas; text-align: left;'>Dan ketika kamu ditanya tentang ngestalk tapi jawaban kamu malah " + answer3 + "</span>";
-
-
-                resultContainer.innerHTML += "<p style='font-family: Consolas;'>BTW makasih ya " + answer1 +
-                    " atas kunjungannya wkwkw... <br><br><br></p>";
-
+                resultContainer.innerHTML += "<p style='font-family: Consolas;'>BTW makasih ya " + answer1 + " atas kunjungannya wkwkw... <br><br><br></p>";
                 resultContainer.innerHTML += "<p style='font-family: Arial;font-size: 15px;'>ada sedikit kata-kata hari ini buat kamu :</p>";
 
                 const kataKata = [
@@ -199,7 +230,6 @@
                     "\"Salah satu momen paling membahagiakan adalah ketika kamu menemukan keberanian untuk melepaskan apa yang tidak bisa kamu ubah\"",
                     "\"Hidup adalah tentang bertahan dan belajar menerima, atau pergi dan belajar melupakan\"",
                     "\"Salah satu cara paling sederhana untuk tetap bahagia adalah melepaskan hal-hal yang membuatmu sedih\"",
-
                 ];
 
                 const kataAcak = kataKata[Math.floor(Math.random() * kataKata.length)];
@@ -212,25 +242,34 @@
         }
 
         function displayThankYouMessage() {
-            document.write("<div class='container'><h4>Kirain kita udah saling kenal ternyata belum ya?<br>Yaudah deh... makasih ya karena udah mampir ke profil Instagram saya<br><br>Pesan untuk kamu :<br><span class='custom-text'>\"Jika datangmu kemari hanya sekedar bosan dan penasaran, maka pergilah\"</span></h4>");
-
-            document.write("<button onclick='openAndCloseWindow()'>Pergi</button>");
-
-            document.write("<span style='margin-right: 20px;'></span>");
-
-            document.write("<button onclick='goToLink()'>Gak Mau Pergi</button></div>");
+            Swal.fire({
+                title: '<span style="font-size: 15px;">Kirain kita udah saling kenal ternyata belum ya? Yaudah deh... makasih ya karena udah mampir ke profil Instagram saya</span>',
+                html: '<p style="font-style: italic; font-size: 10px">Pesan untuk kamu: "Jika datangmu kemari hanya sekedar bosan dan penasaran, maka pergilah"</p>',
+                icon: 'info', // Menggunakan ikon info bawaan, Anda bisa menggantinya jika perlu
+                showCancelButton: true,
+                confirmButtonText: 'Pergi',
+                cancelButtonText: 'Kenalan'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    // Tampilkan gambar dalam SweetAlert
+                    Swal.fire({
+                        imageUrl: 'https://media1.giphy.com/media/9UG46c5clhr3tAXg4m/200w.webp?cid=ecf05e47ave03te2eh3dby3bx49dgvne8wq3kdkv1amytbqs&ep=v1_gifs_related&rid=200w.webp&ct=g',
+                        imageWidth: 400,
+                        imageHeight: 300,
+                        imageAlt: 'Gambar Mimpi',
+                        showConfirmButton: false,
+                        timer: 2300 // Gambar ditampilkan selama 2 detik
+                    }).then(() => {
+                        // Setelah gambar ditampilkan selama 2 detik, arahkan ke Instagram
+                        window.location.href = "https://www.instagram.com";
+                    });
+                } else {
+                    window.location.href = "https://ig.me/m/fahmiprdn16";
+                }
+            });
         }
 
-        function openAndCloseWindow() {
-            var link = "https://www.instagram.com";
-            window.location.href = link;
-        }
-
-        function goToLink() {
-            var link = "https://www.instagram.com/fahmiprdn16";
-            window.location.href = link;
-        }
- function displayCurrentDateTime() {
+        function displayCurrentDateTime() {
             updateDateTime(); // Panggil fungsi untuk pertama kali
             setInterval(updateDateTime, 1000); // Perbarui setiap 1000 milidetik (1 detik)
         }
@@ -244,9 +283,9 @@
             }
         }
 
+        startInteraction();
         displayCurrentDateTime();
     </script>
-
 </body>
 
 </html>
