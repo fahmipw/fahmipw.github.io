@@ -8,7 +8,7 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.min.css">
     <style>
         body {
-            background-image: url('https://images3.alphacoders.com/132/1322308.jpeg');
+            background-image: url('https://images7.alphacoders.com/135/1354305.jpeg');
             background-size: cover;
             background-repeat: no-repeat;
             background-position: center;
@@ -97,6 +97,7 @@
         .swal2-popup {
             width: 300px !important; /* Lebar kotak */
             font-size: 16px !important; /* Ukuran font */
+             background-color: rgba(255, 255, 255, 0.9)
         }
 
         .swal2-title {
@@ -244,7 +245,7 @@
         function displayThankYouMessage() {
             Swal.fire({
                 title: '<span style="font-size: 15px;">Kirain kita udah saling kenal ternyata belum ya? Yaudah deh... makasih ya karena udah mampir ke profil Instagram saya</span>',
-                html: '<p style="font-style: italic; font-size: 10px">Pesan untuk kamu: "Jika datangmu kemari hanya sekedar bosan dan penasaran, maka pergilah"</p>',
+                html: '<p style="font-style: italic; font-size: 10px">Pesan untuk kamu: <br>"Jika datangmu kemari hanya sekedar bosan dan penasaran, maka pergilah"</p>',
                 icon: 'info', // Menggunakan ikon info bawaan, Anda bisa menggantinya jika perlu
                 showCancelButton: true,
                 confirmButtonText: 'Pergi',
@@ -264,7 +265,7 @@
                         window.location.href = "https://www.instagram.com";
                     });
                 } else {
-                    window.location.href = "https://ig.me/m/fahmiprdn16";
+                    window.location.href = "https://www.instagram.com/direct/t/100865637978467/";
                 }
             });
         }
@@ -275,11 +276,22 @@
         }
 
         function updateDateTime() {
-            var options = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric', hour: 'numeric', minute: 'numeric', second: 'numeric', timeZone: 'Asia/Jakarta' };
-            var currentDateTime = new Date().toLocaleString('en-US', options);
+            // Format tanggal dan waktu sesuai zona waktu Asia/Jakarta
+            var formatter = new Intl.DateTimeFormat('id-ID', {
+                weekday: 'long',
+                year: 'numeric',
+                month: 'long',
+                day: 'numeric',
+                hour: 'numeric',
+                minute: 'numeric',
+                second: 'numeric',
+                timeZone: 'Asia/Jakarta'
+            });
+
+            var currentDateTime = formatter.format(new Date());
             var dateTimeContainer = document.getElementById('currentDateTime');
             if (dateTimeContainer) {
-                dateTimeContainer.innerHTML = "" + currentDateTime;
+                dateTimeContainer.innerHTML = currentDateTime;
             }
         }
 
