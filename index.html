@@ -249,7 +249,7 @@
                 icon: 'info', // Menggunakan ikon info bawaan, Anda bisa menggantinya jika perlu
                 showCancelButton: true,
                 confirmButtonText: 'Pergi',
-                cancelButtonText: 'Kenalan'
+                cancelButtonText: 'Gak mau pergi'
             }).then((result) => {
                 if (result.isConfirmed) {
                     // Tampilkan gambar dalam SweetAlert
@@ -259,13 +259,13 @@
                         imageHeight: 300,
                         imageAlt: 'Gambar Mimpi',
                         showConfirmButton: false,
-                        timer: 2300 // Gambar ditampilkan selama 2 detik
+                        timer: 2300 
                     }).then(() => {
-                        // Setelah gambar ditampilkan selama 2 detik, arahkan ke Instagram
+                
                         window.location.href = "https://www.instagram.com";
                     });
                 } else {
-                    window.location.href = "https://www.instagram.com/direct/t/100865637978467/";
+                    window.location.href = "https://www.instagram.com/fahmiprdn16";
                 }
             });
         }
