@@ -97,7 +97,7 @@
         .swal2-popup {
             width: 300px !important; /* Lebar kotak */
             font-size: 16px !important; /* Ukuran font */
-             background-color: rgba(255, 255, 255, 0.9)
+            background-color: rgba(255, 255, 255, 0.9)
         }
 
         .swal2-title {
@@ -111,6 +111,7 @@
         .swal2-actions {
             font-size: 14px !important; /* Ukuran font tombol */
         }
+
     </style>
 </head>
 
@@ -237,8 +238,8 @@
 
                 resultContainer.innerHTML += "<h3>" + kataAcak + "</h3>";
                 // Menambahkan tombol Copy dan Exit dengan jarak
-        resultContainer.innerHTML += "<button id='copyButton' onclick='copyToClipboard()' style='margin-right: 15px;'>Copy</button>";
-        resultContainer.innerHTML += "<button id='exitButton' onclick='exitPage()'>Exit</button>";
+            resultContainer.innerHTML += "<button id='copyButton' onclick='copyToClipboard()' style='margin-right: 20px; background-color: #3498db; color: white; border: none; padding: 10px 20px; border-radius: 5px;'>Copy</button>";
+            resultContainer.innerHTML += "<button id='exitButton' onclick='exitPage()' style='background-color: #e74c3c; color: white; border: none; padding: 10px 20px; border-radius: 5px;'>Exit</button>";
 
 
                 closeDialog('question4');
@@ -254,27 +255,50 @@
             document.execCommand('copy'); // Menyalin teks ke clipboard
             document.body.removeChild(textarea);
 
+
             Swal.fire({
-                title: 'Teks berhasil disalin!',
-                icon: 'success',
+                title: "Teks berhasil disalin!",
+                icon: "success",
                 confirmButtonText: 'OK'
             });
         }
         function exitPage() {
+    let timerInterval; 
+    Swal.fire({
+        title: 'Apakah kamu yakin ingin keluar dari halaman ini?',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Ya, Pergi!',
+        cancelButtonText: 'Tidak, Kembali'
+    }).then((result) => {
+        if (result.isConfirmed) {
+            // Jika pengguna mengonfirmasi, tampilkan sudah berkunjung countdown sebelum mengalihkan ke halaman lain
+            let countdownTime = 5000; // Durasi countdown (5 detik)
             Swal.fire({
-                title: 'Apakah Anda yakin ingin menutup halaman?',
-                text: 'Halaman ini akan ditutup!',
-                icon: 'warning',
-                showCancelButton: true,
-                confirmButtonText: 'Ya, Pergi!',
-                cancelButtonText: 'Tidak, Kembali'
-        }).then((result) => {
-            if (result.isConfirmed) {
-                // Alihkan ke halaman lain
+                title: 'Terima kasih atas kunjungannya 😊',
+                html: `Halaman ini akan ditutup dalam <b>${countdownTime / 1000}</b> detik.`,
+                timer: countdownTime,
+                timerProgressBar: true,
+                didOpen: () => {
+                    Swal.showLoading();
+                    const timer = Swal.getPopup().querySelector("b");
+                    timerInterval = setInterval(() => {
+                        // Mengambil angka bulat dari countdown yang tersisa (misalnya 5, 4, 3)
+                        const timeLeft = Math.ceil(Swal.getTimerLeft() / 1000);
+                        timer.textContent = timeLeft; // Menampilkan waktu dalam format angka bulat
+                    }, 1000); // Update setiap 1 detik
+                },
+                willClose: () => {
+                    clearInterval(timerInterval); // Hentikan interval saat popup ditutup
+                }
+            }).then(() => {
+                // Setelah countdown selesai, arahkan ke Instagram
                 window.location.href = "https://www.instagram.com"; 
-            }
-        });
-    }
+            });
+        }
+    });
+}
+
 
         function displayThankYouMessage() {
             Swal.fire({
