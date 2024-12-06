@@ -95,21 +95,21 @@
 
         /* Mengubah ukuran SweetAlert2 */
         .swal2-popup {
-            width: 300px !important; /* Lebar kotak */
-            font-size: 16px !important; /* Ukuran font */
-             background-color: rgba(255, 255, 255, 0.9)
+            width: 300px !important;
+            font-size: 16px !important;
+            background-color: rgba(255, 255, 255, 0.9)
         }
 
         .swal2-title {
-            font-size: 18px !important; /* Ukuran font judul */
+            font-size: 18px !important;
         }
 
         .swal2-content {
-            font-size: 14px !important; /* Ukuran font konten */
+            font-size: 14px !important;
         }
 
         .swal2-actions {
-            font-size: 14px !important; /* Ukuran font tombol */
+            font-size: 14px !important;
         }
     </style>
 </head>
@@ -148,8 +148,7 @@
     </div>
 
     <div class="copyright">
-        <p>Copyright &copy; 2024 | <a href="https://instagram.com/fahmiprdn16" target="_blank"
-                style="color: #3498db;">fahmiprdn16</a></p>
+        <p>Copyright &copy; 2024 | <a href="https://instagram.com/fahmiprdn16" target="_blank" style="color: #3498db;">fahmiprdn16</a></p>
     </div>
 
     <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11/dist/sweetalert2.all.min.js"></script>
@@ -211,8 +210,7 @@
         function displayResult(answer1, answer2, answer3) {
             var resultContainer = document.getElementById('resultContent');
             if (resultContainer) {
-                const instagramUsername = "fahmiprdn16";
-                resultContainer.innerHTML = "<h2>Hai, kamu adalah pengunjung profil Instagram @" + instagramUsername + "</h2>";
+                resultContainer.innerHTML = "<h2>Hai, kamu adalah pengunjung profil Instagram @" + answer1 + "</h2>";
                 resultContainer.innerHTML += "<br><pre>";
                 resultContainer.innerHTML += "<span style='font-family: Consolas; text-align: left;'>Halo " + answer1 + ", kamu sedang berkunjung ke profil Instagramnya Fahmi. </span>";
                 resultContainer.innerHTML += "<span style='font-family: Consolas; text-align: left;'>Kemudian kamu sudah mengenal Fahmi sejak " + answer2 + ", dan sepertinya Fahmi mengetahui siapa dirimu. </span>";
@@ -237,67 +235,50 @@
 
                 resultContainer.innerHTML += "<h3>" + kataAcak + "</h3>";
 
+                // Menambahkan tombol Copy dan Exit
+                resultContainer.innerHTML += "<button id='copyButton' onclick='copyToClipboard()'>Copy</button>";
+                resultContainer.innerHTML += "<button id='exitButton' onclick='exitPage()'>Exit</button>";
+
                 closeDialog('question4');
                 openDialog('result');
             }
         }
 
-        function displayThankYouMessage() {
+        function copyToClipboard() {
+            const kataAcak = document.querySelector("h3").textContent; // Ambil teks kata-kata
+            const textarea = document.createElement('textarea');
+            textarea.value = kataAcak;
+            document.body.appendChild(textarea);
+            textarea.select();
+            document.execCommand('copy'); // Menyalin teks ke clipboard
+            document.body.removeChild(textarea);
+
             Swal.fire({
-                title: '<span style="font-size: 15px;">Kirain kita udah saling kenal ternyata belum ya? Yaudah deh... makasih ya karena udah mampir ke profil Instagram saya</span>',
-                html: '<p style="font-style: italic; font-size: 10px">Pesan untuk kamu: <br>"Jika datangmu kemari hanya sekedar bosan dan penasaran, maka pergilah"</p>',
-                icon: 'info', // Menggunakan ikon info bawaan, Anda bisa menggantinya jika perlu
+                title: 'Teks berhasil disalin!',
+                icon: 'success',
+                confirmButtonText: 'OK'
+            });
+        }
+
+        function exitPage() {
+            Swal.fire({
+                title: 'Apakah Anda yakin ingin menutup halaman?',
+                text: 'Halaman ini akan ditutup!',
+                icon: 'warning',
                 showCancelButton: true,
-                confirmButtonText: 'Pergi',
-                cancelButtonText: 'Gak mau pergi'
+                confirmButtonText: 'Ya, Tutup!',
+                cancelButtonText: 'Tidak, Kembali'
             }).then((result) => {
                 if (result.isConfirmed) {
-                    // Tampilkan gambar dalam SweetAlert
-                    Swal.fire({
-                        imageUrl: 'https://media1.giphy.com/media/9UG46c5clhr3tAXg4m/200w.webp?cid=ecf05e47ave03te2eh3dby3bx49dgvne8wq3kdkv1amytbqs&ep=v1_gifs_related&rid=200w.webp&ct=g',
-                        imageWidth: 400,
-                        imageHeight: 300,
-                        imageAlt: 'Gambar Mimpi',
-                        showConfirmButton: false,
-                        timer: 2300 
-                    }).then(() => {
-                
-                        window.location.href = "https://www.instagram.com";
-                    });
-                } else {
-                    window.location.href = "https://www.instagram.com/fahmiprdn16";
+                    window.close(); // Menutup halaman
                 }
             });
         }
 
-        function displayCurrentDateTime() {
-            updateDateTime(); // Panggil fungsi untuk pertama kali
-            setInterval(updateDateTime, 1000); // Perbarui setiap 1000 milidetik (1 detik)
-        }
-
-        function updateDateTime() {
-            // Format tanggal dan waktu sesuai zona waktu Asia/Jakarta
-            var formatter = new Intl.DateTimeFormat('id-ID', {
-                weekday: 'long',
-                year: 'numeric',
-                month: 'long',
-                day: 'numeric',
-                hour: 'numeric',
-                minute: 'numeric',
-                second: 'numeric',
-                timeZone: 'Asia/Jakarta'
-            });
-
-            var currentDateTime = formatter.format(new Date());
-            var dateTimeContainer = document.getElementById('currentDateTime');
-            if (dateTimeContainer) {
-                dateTimeContainer.innerHTML = currentDateTime;
-            }
-        }
-
-        startInteraction();
-        displayCurrentDateTime();
+        // Call startInteraction when page loads
+        window.onload = startInteraction;
     </script>
+
 </body>
 
 </html>
