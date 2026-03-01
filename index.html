@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
+
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Portofolio Saya</title>
@@ -8,6 +9,9 @@
   <!-- Font -->
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-jQwKk0dHzT5WXY+azY4I4XqkqRPPuEqwDHRyVTV8a7aGnXHru1eMSppp92cnA7X2xgU8Ydp+y1dj1hDN0i2ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+  ...
 
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -206,7 +210,102 @@ body, p, li {
       cursor: pointer;
       border: 2px solid #00f7ff;
     }
-  </style>
+    .contact-icon {
+    display: inline-flex;
+    align-items: center;
+    color: #00f7ff;
+    text-decoration: none;
+    transition: transform 0.3s ease;
+  }
+
+  .contact-icon:hover svg {
+    transform: scale(1.2) rotate(-5deg);
+    transition: transform 0.3s ease;
+  }
+
+  .contact-icon svg {
+    margin-right: 8px;
+    transition: transform 0.3s ease;
+  }
+
+  /* Animasi bergerak naik-turun terus menerus (optional) */
+  @keyframes float {
+    0% { transform: translateY(0px); }
+    50% { transform: translateY(-5px); }
+    100% { transform: translateY(0px); }
+  }
+
+  .float svg {
+    animation: float 2s ease-in-out infinite;
+  }
+  /* Container tulisan */
+header {
+  display: flex;
+  flex-direction: column;
+  justify-content: center; /* vertical center */
+  align-items: center;     /* horizontal center */
+  text-align: center;
+  padding: 0;              /* hilangkan padding agar tepat di tengah */
+}
+
+header h1:hover {
+  text-shadow: 
+    2px 0 #ff00c8, 
+    -2px 0 #00f7ff;
+  animation: glitch 0.3s infinite;
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-2px, 2px); }
+  40% { transform: translate(-2px, -2px); }
+  60% { transform: translate(2px, 2px); }
+  80% { transform: translate(2px, -2px); }
+  100% { transform: translate(0); }
+}
+.project {
+  position: relative;
+  overflow: hidden;
+  background: rgba(0, 0, 0, 0.3);
+  border: 1px solid rgba(0, 247, 255, 0.3);
+  transition: all 0.4s ease;
+}
+
+.project:hover {
+  transform: translateY(-5px) scale(1.02);
+  border-color: #00f7ff;
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.4), inset 0 0 10px rgba(0, 247, 255, 0.2);
+}
+
+/* Tambahan: Label 'Level' atau 'Status' pada proyek */
+.project h3::before {
+  font-size: 0.7rem;
+  color: #ff00c8;
+  vertical-align: middle;
+}
+.project p:first-of-type {
+  display: inline-block;
+  background: #683ad4;
+  color: white;
+  padding: 2px 10px;
+  font-size: 0.8rem;
+  border-radius: 4px;
+  margin-bottom: 10px;
+  font-family: 'Orbitron', sans-serif;
+}
+/* Animasi mengetik */
+@keyframes typing {
+  0% { width: 0; }
+  50% { width: 24ch; }
+  100% { width: 0; }
+}
+
+/* Animasi kursor berkedip */
+@keyframes blink {
+  0%, 100% { border-color: transparent; }
+  50% { border-color: #00f7ff; }
+}
+</style>
 </head>
 
 <body>
@@ -215,6 +314,7 @@ body, p, li {
 
   <header>
     <img src="porto/pasfoto.jpg" alt="Foto Profil" class="profile-pic">
+    <div class="typing-container">
     <h1>FAHMI PERDANA WICAKSONO</h1>
     <p>🎮 Web Developer | Leveling Up </p>
     <nav>
@@ -392,26 +492,52 @@ body, p, li {
   <div class="card">
     <h2>📡 Contact</h2>
 
-    <p>
-      <i class="fa-solid fa-envelope" style="color:#00f7ff; margin-right:8px;"></i>
-      Email: <a href="mailto:fahmiperdana43@gmail.com" style="color:#00f7ff; text-decoration:underline;">fahmiperdana43@gmail.com</a>
-    </p>
+   
+  <!-- WhatsApp -->
+  <p>
+    <a href="https://wa.me/6288210841990" target="_blank" style="display: inline-flex; align-items: center; color:#00f7ff; text-decoration:none; margin-bottom: 8px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#00f7ff" width="20" height="20" style="margin-right:8px;">
+        <path d="M20.52 3.48A11.8 11.8 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.08 1.5 5.83L0 24l6.43-1.44A11.82 11.82 0 0012 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.22-3.48-8.52zm-8.45 16.23a9.57 9.57 0 01-5.17-1.54l-.37-.24-3.04.68.65-2.96-.24-.38a9.6 9.6 0 01-1.56-5.14c0-5.3 4.31-9.6 9.6-9.6 2.56 0 4.96 1 6.75 2.78a9.47 9.47 0 012.77 6.77c0 5.29-4.3 9.6-9.6 9.6zm5.31-7.09c-.29-.15-1.7-.84-1.96-.93-.26-.1-.45-.15-.64.15-.18.29-.7.93-.85 1.12-.16.19-.31.21-.59.07a7.4 7.4 0 01-2.17-1.34 8.24 8.24 0 01-1.53-1.9c-.16-.28-.02-.43.13-.58.14-.14.3-.34.45-.51.15-.16.2-.28.3-.47.1-.18.05-.34-.02-.49-.07-.15-.63-1.52-.86-2.08-.23-.55-.47-.47-.64-.48-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.29-1 1-1 2.44 0 1.44 1.03 2.83 1.18 3.02.15.19 2.04 3.12 4.95 4.37.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.56-.09 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.54-.34z"/>
+      </svg>
+      WhatsApp
+    </a>
+  </p>
 
-    <p>
-      <i class="fa-brands fa-whatsapp" style="color:#00f7ff; margin-right:8px;"></i>
-      WhatsApp: <a href="https://wa.me/6288210841990" target="_blank" style="color:#00f7ff; text-decoration:underline;">+62 882-1084-1990</a>
-    </p>
+  <!-- Instagram dengan ikon resmi SVG -->
+<p>
+  <a href="https://instagram.com/fahmiprdn16" target="_blank" style="display: inline-flex; align-items: center; color:#00f7ff; text-decoration:none;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="#00f7ff" style="margin-right:8px;">
+      <path d="M349.33 69.33h-186.66C96.22 69.33 69.33 96.22 69.33 162.67v186.66c0 66.44 26.89 93.33 93.34 93.33h186.66c66.44 0 93.33-26.89 93.33-93.33V162.67c0-66.44-26.89-93.34-93.33-93.34zm62.66 280c0 34.51-17.72 52.23-52.23 52.23h-186.66c-34.51 0-52.23-17.72-52.23-52.23V162.67c0-34.51 17.72-52.23 52.23-52.23h186.66c34.51 0 52.23 17.72 52.23 52.23v186.66z"/>
+      <path d="M256 149.33a106.67 106.67 0 1 0 106.67 106.67A106.66 106.66 0 0 0 256 149.33zm0 176a69.33 69.33 0 1 1 69.33-69.33 69.33 69.33 0 0 1-69.33 69.33z"/>
+      <circle cx="390.67" cy="121.33" r="25.6"/>
+    </svg>
+    Instagram
+  </a>
+</p>
 
+  <!-- GitHub -->
+  <p>
+    <a href="https://github.com/fahmipw" target="_blank" style="display: inline-flex; align-items: center; color:#00f7ff; text-decoration:none; margin-bottom: 8px;">
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#00f7ff" width="20" height="20" style="margin-right:8px;">
+        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 016 0c2.292-1.552 3.3-1.23 3.3-1.23.653 1.653.241 2.873.118 3.176.77.84 1.234 1.91 1.234 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.814 1.103.814 2.222 0 1.606-.014 2.898-.014 3.293 0 .32.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
+      </svg>
+      GitHub
+    </a>
+  </p>
 
-    <p>
-      <i class="fa-brands fa-github" style="color:#00f7ff; margin-right:8px;"></i>
-      GitHub: <a href="https://github.com/fahmipw" target="_blank" style="color:#00f7ff; text-decoration:underline;">github.com/fahmipw</a>
-    </p>
+  <!-- Email -->
+  <p>
+    <a href="mailto:fahmiperdana43@gmail.com" style="display: inline-flex; align-items: center; color:#00f7ff; text-decoration:none;">
+      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00f7ff" viewBox="0 0 24 24" style="margin-right:8px;">
+        <path d="M12 13.065l-11.964-7.065h23.928l-11.964 7.065zm0 2.935l-12-7.999v12h24v-12l-12 7.999z"/>
+      </svg>
+      Email
+    </a>
+  </p>
+
   </div>
 </section>
 
-<!-- Font Awesome CDN untuk icon -->
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-jQwKk0dHzT5WXY+azY4I4XqkqRPPuEqwDHRyVTV8a7aGnXHru1eMSppp92cnA7X2xgU8Ydp+y1dj1hDN0i2ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
 
   <footer>
@@ -518,5 +644,4 @@ body, p, li {
   </script>
 </body>
 </html>
-
 
