@@ -143,6 +143,29 @@ body, p, li {
       background: rgba(0, 247, 255, 0.1);
       box-shadow: 0 0 15px #00f7ff;
     }
+    .demo-info {
+  background: rgba(0, 247, 255, 0.05);
+  border-left: 4px solid #ff00c8;
+  padding: 10px 15px;
+  margin: 15px 0;
+  border-radius: 4px;
+  font-size: 0.9rem;
+  display: inline-block;
+}
+
+.demo-info i {
+  color: #ff00c8;
+  margin-right: 8px;
+}
+
+.credential-badge {
+  background: rgba(255, 255, 255, 0.1);
+  padding: 2px 8px;
+  border-radius: 4px;
+  color: #00f7ff;
+  font-family: 'monospace';
+  border: 1px solid rgba(0, 247, 255, 0.3);
+}
 
     /* Modal */
     .modal {
@@ -384,9 +407,13 @@ header h1:hover {
       <h3>🕒 Website Absensi Karyawan PT. Srikandi Inti Prakarsa</h3>
       <p>CodeIgniter + MySQL</p>
       <p>Website ini digunakan untuk mempermudah absensi karyawan dengan fitur login, rekap absensi, dan laporan otomatis. Fokus pada keamanan data dan user-friendly interface.</p>
-      <p>Link demo: <a href="https://srikandiabsensi.infinityfree.me/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p>
-      <br>Admin<p></p>username: admin<br>password: admin
-      <br>Karyawan<p></p>username: karyawan<br>password: 123
+      <div class="demo-info">
+    <i class="fas fa-terminal"></i> <strong>Demo Access:</strong> <br>
+    User: <span class="credential-badge">admin</span> | 
+    Pass: <span class="credential-badge">admin</span>
+  </div>
+
+  <p>Link demo: <a href="https://srikandiabsensi.infinityfree.me/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p><br>
       <div class="swiper gallery-swiper">
         <div class="swiper-wrapper">
           <div class="swiper-slide"><img src="porto/absen1.png" onclick="openModal(this.src)"></div>
@@ -404,13 +431,17 @@ header h1:hover {
     </div>
 
     <!-- PROJECT 2 -->
-    <div class="project">
+     <div class="project">
       <h3>🚚 Sistem Pengiriman Barang Otomatis Toko Bangunan Sinar Terang BSD</h3>
-      <p>PHP Native + Algoritma Heuristik</p>
+      <p>CodeIgniter + MySQL</p>
       <p>Sistem ini mengotomatisasi pengiriman barang berdasarkan algoritma heuristik untuk menentukan rute tercepat. Termasuk manajemen stok, tracking pengiriman, dan laporan pengiriman harian.</p>
-      <p>Link demo: <a href="https://tbsinarterang.infinityfree.me/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p>
-      <br>Admin<p></p>username: admin<br>password: admin
-      <br>Sopir<p></p>username: sopir<br>password: sopir
+      <div class="demo-info">
+    <i class="fas fa-terminal"></i> <strong>Demo Access:</strong> <br>
+    User: <span class="credential-badge">admin</span> | 
+    Pass: <span class="credential-badge">admin</span>
+  </div>
+
+  <p>Link demo: <a href="https://tbsinarterang.infinityfree.me/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p><br>
       
 
       <div class="swiper gallery-swiper">
@@ -654,10 +685,3 @@ header h1:hover {
   </script>
 </body>
 </html>
-
-
-
-
-
-
-
