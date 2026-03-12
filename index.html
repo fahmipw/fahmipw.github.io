@@ -10,7 +10,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-jQwKk0dHzT5WXY+azY4I4XqkqRPPuEqwDHRyVTV8a7aGnXHru1eMSppp92cnA7X2xgU8Ydp+y1dj1hDN0i2ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-
+  
 
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -79,7 +79,66 @@ body, p, li {
       border-top: 1px solid rgba(0, 247, 255, 0.2);
       border-bottom: 1px solid rgba(0, 247, 255, 0.2);
     }
-    /* Warna menu saat sedang aktif/berada di section tersebut */
+    /* Kontainer Nav agar tombol di kanan */
+    /* Pastikan kontainer tetap sejajar secara horizontal */
+    .nav-container {
+      display: flex;
+      flex-direction: row; /* Paksa tetap ke samping */
+      justify-content: space-between; /* Menu kiri/tengah, tombol kanan */
+      align-items: center;
+      width: 100%;
+      max-width: 900px;
+      margin: 0 auto;
+      padding: 0 15px;
+    }
+
+    .nav-links {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap; /* Agar menu tidak tumpang tindih di layar sangat kecil */
+      justify-content: center;
+      flex: 1; /* Mengambil ruang tengah */
+    }
+
+    nav a {
+      margin: 0 5px; /* Perkecil jarak margin di mobile */
+      font-size: 0.9rem; /* Perkecil sedikit font di mobile */
+    }
+
+    /* CSS Khusus Mobile (Responsive) */
+    @media (max-width: 600px) {
+      .nav-container {
+        padding: 5px 10px;
+      }
+      
+      nav a {
+        margin: 0 3px;
+        font-size: 0.8rem; /* Lebih kecil agar muat satu baris */
+      }
+
+      .theme-btn {
+        margin-left: 10px; /* Jarak minimal dengan menu */
+        padding: 5px;
+      }
+    }
+
+    .theme-btn:hover {
+      background: #00f7ff;
+      color: #000;
+      box-shadow: 0 0 20px #00f7ff;
+    }
+
+    /* Penyesuaian untuk Mobile agar tidak berantakan */
+    @media (max-width: 600px) {
+      .nav-container {
+        flex-direction: column;
+        gap: 10px;
+      }
+      .theme-btn {
+        margin-left: 0;
+      }
+    
+}    /* Warna menu saat sedang aktif/berada di section tersebut */
     nav a.active {
       color: #00f7ff;
       text-shadow: 0 0 15px #00f7ff;
@@ -104,6 +163,64 @@ body, p, li {
       padding: 50px 20px;
       max-width: 900px;
       margin: auto;
+    }
+    /* --- Navigasi Modal (Panah) --- */
+    .modal-nav {
+      position: absolute;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 60px; /* Ukuran lebih besar agar ikonik */
+      color: rgba(255, 255, 255, 0.5); /* Warna dasar putih transparan */
+      cursor: pointer;
+      padding: 20px 30px; /* Area klik lebih luas */
+      user-select: none;
+      z-index: 2001; /* Pastikan di depan gambar */
+      transition: all 0.3s ease; /* Transisi halus untuk semua efek */
+    }
+
+    /* Efek Hover (Biru Neon) pada Panah */
+    .modal-nav:hover {
+      color: #00f7ff; /* Biru Neon saat disentuh */
+      text-shadow: 0 0 20px #00f7ff; /* Efek menyala */
+      background: rgba(0, 247, 255, 0.1); /* Sedikit background biru transparan */
+      border-radius: 50%; /* Membuat area hover melingkar */
+    }
+
+    .modal-prev { left: 10px; }
+    .modal-next { right: 10px; }
+
+    /* --- Efek Slide Geser untuk Gambar Modal --- */
+    .modal img {
+      max-width: 85%;
+      max-height: 85%;
+      border-radius: 15px;
+      box-shadow: 0 0 30px rgba(0, 247, 255, 0.5); /* Shadow biru neon konsisten */
+      
+      /* Animasi Transisi Dasar */
+      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
+      opacity: 1;
+      transform: scale(1);
+    }
+
+    /* Class untuk Animasi Keluar (Fading Out & Sliding) */
+    .modal img.fade-out {
+      opacity: 0;
+      transform: scale(0.9) translateX(50px); /* Mengecil & geser ke kanan */
+    }
+
+    /* Class untuk Animasi Masuk (Fading In & Sliding) */
+    .modal img.fade-in {
+      opacity: 0;
+      transform: scale(1.1) translateX(-50px); /* Membesar & geser dari kiri */
+      animation: slideIn 0.4s ease-out forwards;
+    }
+
+    /* Definisi Animasi Masuk */
+    @keyframes slideIn {
+      to {
+        opacity: 1;
+        transform: scale(1) translateX(0);
+      }
     }
 
     .card {
@@ -167,6 +284,80 @@ body, p, li {
   font-size: 0.9rem;
   display: inline-block;
 }
+/* --- Light Mode Styles --- */
+/* --- Optimized Light Mode --- */
+body.light-mode {
+  background: #f4f7f6; /* Abu-abu sangat muda agar tidak silau */
+  color: #1a1a1a;      /* Hitam pekat untuk teks utama */
+}
+
+/* Card di Light Mode */
+body.light-mode .card {
+  background: #ffffff;
+  color: #2d3436;
+  border: 1px solid #dcdde1;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
+}
+
+/* Judul dan Aksen */
+body.light-mode h2 {
+  color: #2c3e50; /* Biru gelap charcoal */
+}
+
+body.light-mode strong {
+  color: #683ad4; /* Ungu tegas untuk highlight */
+}
+
+/* Navigasi Light Mode */
+body.light-mode nav {
+  background: rgba(255, 255, 255, 0.9);
+  border-bottom: 2px solid #683ad4;
+}
+
+body.light-mode nav a {
+  color: #2d3436;
+}
+
+body.light-mode nav a.active {
+  color: #683ad4;
+  font-weight: 700;
+  border-bottom: 2px solid #683ad4;
+}
+
+/* Link di dalam Card */
+body.light-mode section a {
+  color: #683ad4;
+  text-decoration: underline;
+}
+
+/* Footer Light Mode */
+body.light-mode footer {
+  background: #dee2e6;
+  color: #495057;
+}
+
+/* Project Cards di Light Mode */
+body.light-mode .project {
+  background: #f8f9fa;
+  border: 1px solid #dee2e6;
+  color: #2d3436;
+}
+
+body.light-mode .project:hover {
+  background: #ffffff;
+  box-shadow: 0 10px 20px rgba(104, 58, 212, 0.1);
+  border-color: #683ad4;
+}
+body.light-mode #theme-toggle {
+  background: #f1f2f6;
+  border-radius: 50%;
+  padding: 5px;
+}
+
+/* Transisi halus saat ganti mode */
+body {
+  transition: background 0.5s ease, color 0.5s ease;
+}
 
 .demo-info i {
   color: #ff00c8;
@@ -219,12 +410,35 @@ body, p, li {
 
     .modal-prev { left: 30px; }
     .modal-next { right: 30px; }
+    /* Pastikan Modal menutupi seluruh layar termasuk menu */
+    .modal {
+      display: none;
+      position: fixed;
+      inset: 0;
+      background: rgba(0, 0, 0, 0.95); /* Lebih gelap agar fokus ke gambar */
+      justify-content: center;
+      align-items: center;
+      z-index: 2000; /* Angka ini harus lebih tinggi dari z-index nav (1000) */
+      animation: fadeIn 0.3s ease;
+      backdrop-filter: blur(10px);
+    }
+
     .modal-close {
-      position: absolute;
-      top: 20px;
+      position: fixed; /* Gunakan fixed agar posisi tetap terhadap layar */
+      top: 30px;
       right: 30px;
-      font-size: 30px;
+      font-size: 45px;
+      color: #ff00c8; /* Pink neon */
       cursor: pointer;
+      z-index: 2001; /* Satu tingkat di atas background modal */
+      text-shadow: 0 0 15px #ff00c8;
+      transition: 0.3s;
+      line-height: 1;
+    }
+
+    .modal-close:hover {
+      color: #00f7ff;
+      transform: scale(1.2) rotate(90deg);
     }
 
     footer {
@@ -364,11 +578,34 @@ header h1:hover {
   </header>
 
   <nav>
-    <a href="#about">About</a>
-    <a href="#skills">Skills</a>
-    <a href="#projects">Quest</a>
-    <a href="#contact">Contact</a>
-  </nav>
+  <div class="nav-container">
+    <div class="nav-links">
+      <a href="#about">About</a>
+      <a href="#skills">Skills</a>
+      <a href="#projects">Quest</a>
+      <a href="#contact">Contact</a>
+    </div>
+    <!-- Tombol Dark Mode Baru -->
+    <button id="theme-toggle" class="theme-btn" style="background:none; border:none; cursor:pointer; margin-left:15px; vertical-align:middle; display:flex; align-items:center;">
+  <!-- Ikon Bulan (Default) -->
+  <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#00f7ff" style="filter: drop-shadow(0 0 5px #00f7ff);">
+    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+  </svg>
+  <!-- Ikon Matahari (Sembunyi dulu) -->
+  <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffaa00" style="display:none; filter: drop-shadow(0 0 8px #ffaa00);">
+    <circle cx="12" cy="12" r="5"></circle>
+    <line x1="12" y1="1" x2="12" y2="3"></line>
+    <line x1="12" y1="21" x2="12" y2="23"></line>
+    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+    <line x1="1" y1="12" x2="3" y2="12"></line>
+    <line x1="21" y1="12" x2="23" y2="12"></line>
+    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+  </svg>
+</button>
+  </div>
+</nav>
 
   <section id="about">
   <div class="card" style="text-align: justify;">
@@ -632,6 +869,34 @@ header h1:hover {
       retina_detect:true
     });
 
+   const themeToggle = document.getElementById('theme-toggle');
+const moonIcon = document.getElementById('moon-icon');
+const sunIcon = document.getElementById('sun-icon');
+
+function updateThemeUI(isLight) {
+    if (isLight) {
+        document.body.classList.add('light-mode');
+        moonIcon.style.display = 'none';   // Sembunyikan bulan
+        sunIcon.style.display = 'block';   // Munculkan matahari
+    } else {
+        document.body.classList.remove('light-mode');
+        moonIcon.style.display = 'block';  // Munculkan bulan
+        sunIcon.style.display = 'none';    // Sembunyikan matahari
+    }
+}
+
+themeToggle.addEventListener('click', () => {
+    const isLight = !document.body.classList.contains('light-mode');
+    updateThemeUI(isLight);
+    localStorage.setItem('theme', isLight ? 'light' : 'dark');
+});
+
+// Cek saat pertama kali buka halaman
+const savedTheme = localStorage.getItem('theme');
+if (savedTheme === 'light') {
+    updateThemeUI(true);
+}
+
     // Scroll animation
     const cards = document.querySelectorAll('.card');
     const skillFills = document.querySelectorAll('.skill-fill');
@@ -731,4 +996,3 @@ header h1:hover {
   </script>
 </body>
 </html>
-
