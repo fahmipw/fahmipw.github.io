@@ -11,6 +11,7 @@
   <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-jQwKk0dHzT5WXY+azY4I4XqkqRPPuEqwDHRyVTV8a7aGnXHru1eMSppp92cnA7X2xgU8Ydp+y1dj1hDN0i2ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
   
+  ...
 
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
@@ -67,13 +68,29 @@ body, p, li {
 
 
 
-    nav {
+   nav {
       text-align: center;
       margin-top: 20px;
+      position: sticky; /* Membuat menu menempel */
+      top: 0;           /* Menempel di bagian paling atas */
+      z-index: 1000;    /* Agar menu tidak tertutup elemen lain */
+      background: rgba(15, 12, 41, 0.8); /* Background transparan agar teks tetap terbaca */
+      backdrop-filter: blur(10px);      /* Efek blur kaca */
+      padding: 15px 0;
+      border-top: 1px solid rgba(0, 247, 255, 0.2);
+      border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+    }
+    /* Warna menu saat sedang aktif/berada di section tersebut */
+    nav a.active {
+      color: #00f7ff;
+      text-shadow: 0 0 15px #00f7ff;
+      font-weight: bold;
+      border-bottom: 2px solid #00f7ff;
+      padding-bottom: 5px;
     }
 
     nav a {
-      color: white;
+      color: white; 
       margin: 0 15px;
       text-decoration: none;
       transition: 0.3s;
@@ -342,15 +359,17 @@ header h1:hover {
   <header>
     <img src="porto/pasfoto.jpg" alt="Foto Profil" class="profile-pic">
     <div class="typing-container">
-    <h1>FAHMI PERDANA WICAKSONO</h1>
-    <p>🎮 Web Developer | Leveling Up </p>
-    <nav>
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Quest</a>
-      <a href="#contact">Contact</a>
-    </nav>
+      <h1>FAHMI PERDANA WICAKSONO</h1>
+      <p>🎮 Web Developer | Leveling Up </p>
+    </div>
   </header>
+
+  <nav>
+    <a href="#about">About</a>
+    <a href="#skills">Skills</a>
+    <a href="#projects">Quest</a>
+    <a href="#contact">Contact</a>
+  </nav>
 
   <section id="about">
   <div class="card" style="text-align: justify;">
@@ -432,7 +451,7 @@ header h1:hover {
     <!-- PROJECT 2 -->
      <div class="project">
       <h3>🚚 Sistem Pengiriman Barang Otomatis Toko Bangunan Sinar Terang BSD</h3>
-      <p>PHP Native + MySQL</p>
+      <p>CodeIgniter + MySQL</p>
       <p>Sistem ini mengotomatisasi pengiriman barang berdasarkan algoritma heuristik untuk menentukan rute tercepat. Termasuk manajemen stok, tracking pengiriman, dan laporan pengiriman harian.</p>
       <div class="demo-info">
     <i class="fas fa-terminal"></i> <strong>Demo Access:</strong> <br>
@@ -628,6 +647,35 @@ header h1:hover {
       });
     });
 
+    const sections = document.querySelectorAll("section[id]");
+    const navLinks = document.querySelectorAll("nav a");
+
+    const observerOptions = {
+      root: null,
+      rootMargin: "-20% 0px -70% 0px", // Mengunci deteksi di area tengah-atas layar
+      threshold: 0
+    };
+
+    const observer = new IntersectionObserver((entries) => {
+      entries.forEach((entry) => {
+        if (entry.isIntersecting) {
+          const id = entry.target.getAttribute("id");
+          
+          // Reset semua class active
+          navLinks.forEach((link) => {
+            link.classList.remove("active");
+            if (link.getAttribute("href") === `#${id}`) {
+              link.classList.add("active");
+            }
+          });
+        }
+      });
+    }, observerOptions);
+
+    sections.forEach((section) => {
+      observer.observe(section);
+    });
+
     // Modal
     let currentImages = [], currentIndex = 0;
     function openModal(src){
@@ -684,4 +732,3 @@ header h1:hover {
   </script>
 </body>
 </html>
-
