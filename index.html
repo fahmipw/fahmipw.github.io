@@ -84,12 +84,13 @@ body, p, li {
     .nav-container {
       display: flex;
       flex-direction: row; /* Paksa tetap ke samping */
-      justify-content: space-between; /* Menu kiri/tengah, tombol kanan */
+      justify-content: center; /* Menu di tengah */
       align-items: center;
       width: 100%;
       max-width: 900px;
       margin: 0 auto;
       padding: 0 15px;
+      position: relative;
     }
 
     .nav-links {
@@ -106,6 +107,29 @@ body, p, li {
     }
 
     /* CSS Khusus Mobile (Responsive) */
+    .theme-btn {
+      position: absolute;
+      right: 15px;
+      top: 50%;
+      transform: translateY(-50%);
+      background:none;
+      border:none;
+      cursor:pointer;
+      display:flex;
+      align-items:center;
+      gap: 6px;
+      z-index: 1001;
+      padding: 8px;
+    }
+
+    .theme-btn:hover {
+      background: #00f7ff;
+      color: #000;
+      box-shadow: 0 0 20px #00f7ff;
+      border-radius: 50%;
+    }
+
+    /* Penyesuaian untuk Mobile agar tidak berantakan */
     @media (max-width: 600px) {
       .nav-container {
         padding: 5px 10px;
@@ -116,29 +140,20 @@ body, p, li {
         font-size: 0.8rem; /* Lebih kecil agar muat satu baris */
       }
 
-      .theme-btn {
-        margin-left: 10px; /* Jarak minimal dengan menu */
-        padding: 5px;
-      }
-    }
-
-    .theme-btn:hover {
-      background: #00f7ff;
-      color: #000;
-      box-shadow: 0 0 20px #00f7ff;
-    }
-
-    /* Penyesuaian untuk Mobile agar tidak berantakan */
-    @media (max-width: 600px) {
       .nav-container {
         flex-direction: column;
         gap: 10px;
       }
       .theme-btn {
-        margin-left: 0;
+        position: absolute;
+        right: 10px;
+        top: 50%;
+        transform: translateY(-50%);
+        padding: 5px;
       }
-    
-}    /* Warna menu saat sedang aktif/berada di section tersebut */
+    }
+
+    /* Warna menu saat sedang aktif/berada di section tersebut */
     nav a.active {
       color: #00f7ff;
       text-shadow: 0 0 15px #00f7ff;
@@ -586,7 +601,7 @@ header h1:hover {
       <a href="#contact">Contact</a>
     </div>
     <!-- Tombol Dark Mode Baru -->
-    <button id="theme-toggle" class="theme-btn" style="background:none; border:none; cursor:pointer; margin-left:15px; vertical-align:middle; display:flex; align-items:center;">
+    <button id="theme-toggle" class="theme-btn">
   <!-- Ikon Bulan (Default) -->
   <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#00f7ff" style="filter: drop-shadow(0 0 5px #00f7ff);">
     <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
@@ -718,6 +733,25 @@ header h1:hover {
 
     <!-- PROJECT 3 -->
     <div class="project">
+      <h3>🤖 Chatbot AI</h3>
+      <p>Next.js</p>
+      <p>Chatbot ini memberikan jawaban otomatis. Dirancang untuk membantu pertanyaan umum pengguna dengan UI sederhana dan respons cepat.</p>
+      <br><p>Link demo: <a href="https://chatbotku.vercel.app/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p><br>
+  
+      <div class="swiper gallery-swiper">
+        <div class="swiper-wrapper">
+          <div class="swiper-slide"><img src="porto/chat1.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/chat2.png" onclick="openModal(this.src)"></div>
+          <div class="swiper-slide"><img src="porto/chat3.png" onclick="openModal(this.src)"></div>
+        </div>
+        <div class="swiper-button-prev"></div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-pagination"></div>
+      </div>
+    </div>
+
+    <!-- PROJECT 4 -->
+    <div class="project">
       <h3>📚 Sistem Informasi Manajemen Perpustakaan</h3>
       <p>PHP Native + MySQL</p>
       <p>Fokus utama aplikasi ini adalah memberikan kemudahan bagi pustakawan dalam mengelola data buku, anggota, hingga memproses transaksi peminjaman secara efisien dan terorganisir.
@@ -739,7 +773,7 @@ header h1:hover {
       </div>
     </div>
 
-    <!-- PROJECT 4 -->
+    <!-- PROJECT 5 -->
     <div class="project">
       <h3>💰 Sistem Penggajian Karyawan</h3>
       <p>PHP Native + MySQL</p>
@@ -760,23 +794,7 @@ header h1:hover {
       </div>
     </div>
 
-    <!-- PROJECT 5 -->
-    <div class="project">
-      <h3>🤖 Chatbot Sederhana</h3>
-      <p>Next.js + API Gemini</p>
-      <p>Chatbot ini memberikan jawaban otomatis menggunakan API Gemini. Dirancang untuk membantu pertanyaan umum pengguna dengan UI sederhana dan respons cepat.</p>
-  
-      <div class="swiper gallery-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="porto/chat1.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/chat2.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/chat3.png" onclick="openModal(this.src)"></div>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
+   
 
   </div>
 </section>
@@ -996,4 +1014,3 @@ if (savedTheme === 'light') {
   </script>
 </body>
 </html>
-
