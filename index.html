@@ -106,7 +106,7 @@ body, p, li {
       font-size: 0.9rem; /* Perkecil sedikit font di mobile */
     }
 
-    /* CSS Khusus Mobile (Responsive) */
+    /* Tombol Dark Mode */
     .theme-btn {
       position: absolute;
       right: 15px;
@@ -117,15 +117,40 @@ body, p, li {
       cursor:pointer;
       display:flex;
       align-items:center;
-      gap: 6px;
+      justify-content:center;
+      width: 44px;
+      height: 44px;
+      gap: 0;
       z-index: 1001;
-      padding: 8px;
+      padding: 0;
+      color: #00f7ff;
+      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
     }
 
-    .theme-btn:hover {
-      background: #00f7ff;
-      color: #000;
-      box-shadow: 0 0 20px #00f7ff;
+    .theme-btn svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+      fill: currentColor;
+    }
+
+    .theme-btn svg path,
+    .theme-btn svg circle,
+    .theme-btn svg line {
+      fill: currentColor;
+      stroke: currentColor;
+      transition: fill 0.2s ease, stroke 0.2s ease;
+    }
+
+    .theme-btn:focus {
+      outline: none;
+    }
+
+    .theme-btn:hover,
+    .theme-btn:active {
+      background: rgba(0, 247, 255, 0.18);
+      color: #ffffff;
+      box-shadow: 0 0 16px rgba(0, 247, 255, 0.45);
       border-radius: 50%;
     }
 
@@ -145,7 +170,6 @@ body, p, li {
         gap: 10px;
       }
       .theme-btn {
-        position: absolute;
         right: 10px;
         top: 50%;
         transform: translateY(-50%);
