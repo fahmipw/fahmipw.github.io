@@ -1,1039 +1,1226 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio Saya</title>
+  <title>Portofolio Cyberpunk | Fahmi Perdana Wicaksono</title>
 
-  <!-- Font -->
-  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap" rel="stylesheet">
-  <link href="https://fonts.googleapis.com/css2?family=Exo+2:wght@400;500;600&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" integrity="sha512-jQwKk0dHzT5WXY+azY4I4XqkqRPPuEqwDHRyVTV8a7aGnXHru1eMSppp92cnA7X2xgU8Ydp+y1dj1hDN0i2ykg==" crossorigin="anonymous" referrerpolicy="no-referrer" />
-  
+  <!-- Google Fonts: Orbitron & Exo 2 -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Exo+2:ital,wght@0,300;0,400;0,600;0,700;1,400&family=Orbitron:wght@500;700;900&display=swap" rel="stylesheet">
+
+  <!-- Font Awesome Icons -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css" crossorigin="anonymous" referrerpolicy="no-referrer" />
 
   <!-- Swiper CSS -->
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.css" />
 
-  <!-- Particle JS -->
-  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
-
   <style>
+    /* ==========================================================================
+       CYBERPUNK FUTURISTIC GAMING STYLESHEET (FULL RESPONSIVE)
+       ========================================================================== */
+
+    :root {
+      --neon-cyan: #00f7ff;
+      --neon-pink: #ff00c8;
+      --dark-purple: #683ad4;
+      --bg-dark: #080711;
+      --bg-gradient: linear-gradient(135deg, #0d061a 0%, #060b19 50%, #030206 100%);
+      --card-bg: rgba(20, 15, 38, 0.65);
+      --card-border: rgba(0, 247, 255, 0.25);
+      --text-main: #e2e8f0;
+      --text-muted: #94a3b8;
+      --shadow-glow: 0 0 15px rgba(0, 247, 255, 0.4);
+      --shadow-pink: 0 0 15px rgba(255, 0, 200, 0.4);
+      --transition-speed: 0.3s;
+    }
+
+    body.light-mode {
+      --bg-gradient: linear-gradient(135deg, #e0e7ff 0%, #f0f4ff 50%, #fae8ff 100%);
+      --card-bg: rgba(255, 255, 255, 0.85);
+      --card-border: rgba(104, 58, 212, 0.3);
+      --text-main: #0f172a;
+      --text-muted: #475569;
+      --shadow-glow: 0 0 15px rgba(104, 58, 212, 0.3);
+    }
+
+    /* Reset & Base Styles */
     * {
       margin: 0;
       padding: 0;
       box-sizing: border-box;
       scroll-behavior: smooth;
-      font-family: 'Orbitron', sans-serif;
     }
 
     body {
-      background: linear-gradient(135deg, #0f0c29, #302b63, #24243e);
-      color: white;
+      font-family: 'Exo 2', sans-serif;
+      background: var(--bg-gradient);
+      background-attachment: fixed;
+      color: var(--text-main);
+      min-height: 100vh;
+      overflow-x: hidden;
+      transition: background var(--transition-speed) ease, color var(--transition-speed) ease;
     }
 
-    header {
-      text-align: center;
-      padding: 60px 20px;
+    #tsparticles {
+      position: fixed;
+      inset: 0;
+      z-index: -1;
     }
 
-    .profile-pic {
-      width: 150px;
-      height: 150px;
-      border-radius: 50%;
-      border: 4px solid #00f7ff;
-      box-shadow: 0 0 25px #00f7ff;
-      object-fit: cover;
-      margin-bottom: 20px;
-      animation: float 3s ease-in-out infinite;
+    h1, h2, h3, .nav-logo {
+      font-family: 'Orbitron', sans-serif;
     }
 
-    @keyframes float {
-      0% { transform: translateY(0px); }
-      50% { transform: translateY(-10px); }
-      100% { transform: translateY(0px); }
+    .text-justify {
+      text-align: justify;
     }
 
-  /* Header / Judul */
-h1, h2, h3 {
-  font-family: 'Orbitron', sans-serif;
-}
-
-/* Paragraf dan teks panjang */
-body, p, li {
-  font-family: 'Exo 2', sans-serif;
-  line-height: 1.6;
-}
-
-
-
-   nav {
-      text-align: center;
-      margin-top: 20px;
-      position: sticky; /* Membuat menu menempel */
-      top: 0;           /* Menempel di bagian paling atas */
-      z-index: 1000;    /* Agar menu tidak tertutup elemen lain */
-      background: rgba(15, 12, 41, 0.8); /* Background transparan agar teks tetap terbaca */
-      backdrop-filter: blur(10px);      /* Efek blur kaca */
-      padding: 15px 0;
-      border-top: 1px solid rgba(0, 247, 255, 0.2);
-      border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+    /* Glassmorphism Styling */
+    .glass-card {
+      background: var(--card-bg);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      border: 1px solid var(--card-border);
+      border-radius: 12px;
+      padding: 1.5rem;
+      box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.37);
+      transition: transform var(--transition-speed) ease, border var(--transition-speed) ease, box-shadow var(--transition-speed) ease;
     }
-    /* Kontainer Nav agar tombol di kanan */
-    /* Pastikan kontainer tetap sejajar secara horizontal */
+
+    /* Sticky Navigation */
+    .navbar {
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      background: rgba(8, 7, 17, 0.85);
+      backdrop-filter: blur(15px);
+      -webkit-backdrop-filter: blur(15px);
+      border-bottom: 1px solid var(--card-border);
+      transition: all var(--transition-speed) ease;
+    }
+
+    body.light-mode .navbar {
+      background: rgba(240, 244, 255, 0.88);
+    }
+
     .nav-container {
-      display: flex;
-      flex-direction: row; /* Paksa tetap ke samping */
-      justify-content: center; /* Menu di tengah */
-      align-items: center;
-      width: 100%;
-      max-width: 900px;
+      max-width: 1200px;
       margin: 0 auto;
-      padding: 0 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 0.8rem 1.5rem;
+    }
+
+    .nav-logo {
+      font-size: 1.2rem;
+      font-weight: 900;
+      color: var(--text-main);
+      text-decoration: none;
+      letter-spacing: 1.5px;
+    }
+
+    .nav-logo .highlight {
+      color: var(--neon-cyan);
+      text-shadow: var(--shadow-glow);
+    }
+
+    .nav-menu {
+      display: flex;
+      list-style: none;
+      gap: 2rem;
+    }
+
+    .nav-link {
+      color: var(--text-muted);
+      text-decoration: none;
+      font-weight: 600;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.9rem;
+      transition: color var(--transition-speed) ease, text-shadow var(--transition-speed) ease;
       position: relative;
     }
 
-    .nav-links {
+    .nav-link:hover, .nav-link.active {
+      color: var(--neon-cyan);
+      text-shadow: var(--shadow-glow);
+    }
+
+    body.light-mode .nav-link:hover, 
+    body.light-mode .nav-link.active {
+      color: var(--dark-purple);
+      text-shadow: none;
+    }
+
+    .nav-link.active::after {
+      content: '';
+      position: absolute;
+      bottom: -6px;
+      left: 0;
+      width: 100%;
+      height: 2px;
+      background: var(--neon-cyan);
+      box-shadow: var(--shadow-glow);
+    }
+
+    body.light-mode .nav-link.active::after {
+      background: var(--dark-purple);
+    }
+
+    .nav-actions {
       display: flex;
-      gap: 10px;
-      flex-wrap: wrap; /* Agar menu tidak tumpang tindih di layar sangat kecil */
-      justify-content: center;
-      flex: 1; /* Mengambil ruang tengah */
+      align-items: center;
+      gap: 0.8rem;
     }
 
-    nav a {
-      margin: 0 5px; /* Perkecil jarak margin di mobile */
-      font-size: 0.9rem; /* Perkecil sedikit font di mobile */
-    }
-
-    /* Tombol Dark Mode */
-    .theme-btn {
-      position: absolute;
-      right: 15px;
-      top: 50%;
-      transform: translateY(-50%);
-      background:none;
-      border:none;
-      cursor:pointer;
-      display:flex;
-      align-items:center;
-      justify-content:center;
-      width: 44px;
-      height: 44px;
-      gap: 0;
-      z-index: 1001;
-      padding: 0;
-      color: #00f7ff;
-      transition: background 0.2s ease, color 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    .theme-btn svg {
-      width: 24px;
-      height: 24px;
-      display: block;
-      fill: currentColor;
-    }
-
-    .theme-btn svg path,
-    .theme-btn svg circle,
-    .theme-btn svg line {
-      fill: currentColor;
-      stroke: currentColor;
-      transition: fill 0.2s ease, stroke 0.2s ease;
-    }
-
-    .theme-btn:focus {
-      outline: none;
-    }
-
-    .theme-btn:hover,
-    .theme-btn:active {
-      background: rgba(0, 247, 255, 0.18);
-      color: #ffffff;
-      box-shadow: 0 0 16px rgba(0, 247, 255, 0.45);
+    .theme-btn, .menu-toggle-btn {
+      background: transparent;
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      width: 38px;
+      height: 38px;
       border-radius: 50%;
+      cursor: pointer;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all var(--transition-speed) ease;
     }
 
-    /* Penyesuaian untuk Mobile agar tidak berantakan */
-    @media (max-width: 600px) {
-      .nav-container {
-        padding: 5px 10px;
-      }
-      
-      nav a {
-        margin: 0 3px;
-        font-size: 0.8rem; /* Lebih kecil agar muat satu baris */
-      }
+    .theme-btn:hover, .menu-toggle-btn:hover {
+      background: var(--neon-cyan);
+      color: var(--bg-dark);
+      box-shadow: var(--shadow-glow);
+    }
 
-      .nav-container {
-        flex-direction: column;
-        gap: 10px;
-      }
-      .theme-btn {
-        right: 10px;
-        top: 50%;
-        transform: translateY(-50%);
-        padding: 5px;
+    .menu-toggle-btn {
+      display: none;
+    }
+
+    /* Hero Header */
+    .hero-section {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 4rem 1rem 2rem;
+      text-align: center;
+    }
+
+    .profile-avatar-wrapper {
+      position: relative;
+      width: 140px;
+      height: 140px;
+      margin: 0 auto 1.2rem;
+      border-radius: 50%;
+      padding: 4px;
+      background: linear-gradient(45deg, var(--neon-cyan), var(--neon-pink));
+      box-shadow: var(--shadow-glow);
+      animation: floating 4s ease-in-out infinite;
+    }
+
+    .profile-avatar {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+    }
+
+    .glitch-title {
+      font-size: 2.2rem;
+      font-weight: 900;
+      color: var(--text-main);
+      position: relative;
+      letter-spacing: 2px;
+      margin-bottom: 0.5rem;
+      word-break: break-word;
+    }
+
+    .glitch-title:hover {
+      animation: glitch 0.3s cubic-bezier(.25, .46, .45, .94) both infinite;
+      color: var(--neon-cyan);
+      text-shadow: var(--shadow-glow);
+    }
+
+    .subtitle {
+      font-family: 'Orbitron', sans-serif;
+      color: var(--neon-pink);
+      font-size: 1rem;
+      min-height: 1.6em;
+    }
+
+    .cursor {
+      animation: blink 0.7s infinite;
+    }
+
+    /* Main Sections Layout */
+    .main-content {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 0 1rem 3rem;
+    }
+
+    .section {
+      margin-bottom: 3.5rem;
+    }
+
+    .section-title {
+      font-size: 1.4rem;
+      color: var(--neon-cyan);
+      margin-bottom: 1.2rem;
+      display: flex;
+      align-items: center;
+      gap: 0.6rem;
+      text-shadow: var(--shadow-glow);
+    }
+
+    body.light-mode .section-title {
+      color: var(--dark-purple);
+      text-shadow: none;
+    }
+    /* Skill Category Grid Layout */
+    .skills-category-grid {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.5rem;
+    }
+
+    @media (min-width: 768px) {
+      .skills-category-grid {
+        grid-template-columns: repeat(2, 1fr);
       }
     }
 
-    /* Warna menu saat sedang aktif/berada di section tersebut */
-    nav a.active {
-      color: #00f7ff;
-      text-shadow: 0 0 15px #00f7ff;
-      font-weight: bold;
-      border-bottom: 2px solid #00f7ff;
-      padding-bottom: 5px;
+    .skill-category-title {
+      font-size: 1.1rem;
+      color: var(--neon-pink);
+      margin-bottom: 1rem;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      border-bottom: 1px solid rgba(0, 247, 255, 0.2);
+      padding-bottom: 0.5rem;
     }
 
-    nav a {
-      color: white; 
-      margin: 0 15px;
+    body.light-mode .skill-category-title {
+      color: var(--dark-purple);
+      border-bottom-color: rgba(104, 58, 212, 0.2);
+    }
+
+    /* Skills Progress Bar */
+    .skills-card {
+      display: flex;
+      flex-direction: column;
+      gap: 1.2rem;
+    }
+
+    .skill-info {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 0.4rem;
+      font-weight: 600;
+      font-size: 0.95rem;
+    }
+
+    .progress-bar-bg {
+      width: 100%;
+      height: 10px;
+      background: rgba(255, 255, 255, 0.1);
+      border-radius: 5px;
+      overflow: hidden;
+      border: 1px solid rgba(0, 247, 255, 0.2);
+    }
+
+    .progress-bar-fill {
+      height: 100%;
+      width: 0%;
+      background: linear-gradient(90deg, var(--dark-purple), var(--neon-cyan));
+      box-shadow: var(--shadow-glow);
+      border-radius: 5px;
+      transition: width 1.5s cubic-bezier(0.1, 0.42, 0.41, 0.8);
+    }
+
+    /* Quests / Projects */
+    .quest-grid {
+      display: flex;
+      flex-direction: column;
+      gap: 1.8rem;
+    }
+
+    .quest-card {
+      display: grid;
+      grid-template-columns: 1fr;
+      gap: 1.2rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    @media (min-width: 769px) {
+      .glass-card {
+        padding: 2rem;
+      }
+      .quest-card {
+        grid-template-columns: 1fr 1fr;
+      }
+    }
+
+    .quest-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--neon-cyan);
+      box-shadow: var(--shadow-glow);
+    }
+
+    .quest-gallery {
+      width: 100%;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .swiper {
+      width: 100%;
+      height: 220px;
+      border-radius: 8px;
+    }
+
+    .swiper-slide img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      cursor: pointer;
+      border-radius: 6px;
+    }
+
+    .quest-title {
+      color: var(--neon-pink);
+      margin-bottom: 0.5rem;
+      font-size: 1.1rem;
+    }
+
+    .tech-tag {
+      font-size: 0.75rem;
+      background: rgba(104, 58, 212, 0.3);
+      border: 1px solid var(--dark-purple);
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      color: var(--text-main);
+      font-family: 'Orbitron', sans-serif;
+      display: inline-block;
+      margin-bottom: 0.8rem;
+    }
+
+    .demo-info {
+      background: rgba(0, 247, 255, 0.05);
+      border-left: 3px solid var(--neon-pink);
+      padding: 8px 12px;
+      margin: 10px 0;
+      border-radius: 4px;
+      font-size: 0.85rem;
+      word-break: break-all;
+    }
+
+    .credential-badge {
+      background: rgba(255, 255, 255, 0.1);
+      padding: 2px 6px;
+      border-radius: 4px;
+      color: var(--neon-cyan);
+      font-family: monospace;
+      border: 1px solid rgba(0, 247, 255, 0.3);
+    }
+
+    body.light-mode .credential-badge {
+      color: var(--dark-purple);
+      background: #e2e8f0;
+    }
+
+    .btn-demo {
+      display: inline-block;
+      padding: 0.6rem 1rem;
+      background: transparent;
+      color: var(--neon-cyan);
+      border: 1px solid var(--neon-cyan);
+      border-radius: 4px;
+      font-family: 'Orbitron', sans-serif;
+      font-size: 0.8rem;
       text-decoration: none;
-      transition: 0.3s;
+      transition: all var(--transition-speed) ease;
+      margin-top: 0.5rem;
     }
 
-    nav a:hover {
-      color: #00f7ff;
-      text-shadow: 0 0 10px #00f7ff;
+    .btn-demo:hover {
+      background: var(--neon-cyan);
+      color: var(--bg-dark);
+      box-shadow: var(--shadow-glow);
     }
 
-    section {
-      padding: 50px 20px;
-      max-width: 900px;
-      margin: auto;
+    /* Contact Section */
+    .social-links {
+      display: flex;
+      justify-content: center;
+      gap: 1.2rem;
+      margin-top: 1.2rem;
+      flex-wrap: wrap;
     }
-    /* --- Navigasi Modal (Panah) --- */
-    .modal-nav {
+
+    .social-icon {
+      width: 45px;
+      height: 45px;
+      border-radius: 50%;
+      border: 1px solid var(--card-border);
+      background: rgba(255, 255, 255, 0.05);
+      color: var(--neon-cyan);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.2rem;
+      text-decoration: none;
+      transition: all var(--transition-speed) ease;
+    }
+
+    .social-icon:hover {
+      transform: scale(1.15);
+      color: var(--neon-cyan);
+      border-color: var(--neon-cyan);
+      box-shadow: var(--shadow-glow);
+    }
+
+    body.light-mode .social-icon {
+      color: var(--dark-purple);
+    }
+
+    /* Footer */
+    .footer {
+      text-align: center;
+      padding: 1.5rem 1rem;
+      font-size: 0.85rem;
+      color: var(--text-muted);
+      border-top: 1px solid var(--card-border);
+    }
+
+    /* Fullscreen Lightbox Modal */
+    .modal {
+      display: none;
+      position: fixed;
+      z-index: 2000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: rgba(0, 0, 0, 0.9);
+      backdrop-filter: blur(10px);
+      -webkit-backdrop-filter: blur(10px);
+      justify-content: center;
+      align-items: center;
+    }
+
+    .modal-content {
+      max-width: 90%;
+      max-height: 75vh;
+      border-radius: 8px;
+      border: 2px solid var(--neon-cyan);
+      box-shadow: var(--shadow-glow);
+      animation: zoomIn 0.3s ease;
+      object-fit: contain;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 15px;
+      right: 20px;
+      color: #fff;
+      font-size: 32px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: color 0.2s;
+      z-index: 2001;
+    }
+
+    .modal-close:hover {
+      color: var(--neon-pink);
+    }
+
+    .modal-btn {
       position: absolute;
       top: 50%;
       transform: translateY(-50%);
-      font-size: 60px; /* Ukuran lebih besar agar ikonik */
-      color: rgba(255, 255, 255, 0.5); /* Warna dasar putih transparan */
+      background: rgba(0, 0, 0, 0.6);
+      border: 1px solid var(--neon-cyan);
+      color: var(--neon-cyan);
+      width: 40px;
+      height: 40px;
       cursor: pointer;
-      padding: 20px 30px; /* Area klik lebih luas */
-      user-select: none;
-      z-index: 2001; /* Pastikan di depan gambar */
-      transition: all 0.3s ease; /* Transisi halus untuk semua efek */
-    }
-
-    /* Efek Hover (Biru Neon) pada Panah */
-    .modal-nav:hover {
-      color: #00f7ff; /* Biru Neon saat disentuh */
-      text-shadow: 0 0 20px #00f7ff; /* Efek menyala */
-      background: rgba(0, 247, 255, 0.1); /* Sedikit background biru transparan */
-      border-radius: 50%; /* Membuat area hover melingkar */
+      border-radius: 50%;
+      font-size: 1rem;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      transition: all 0.2s;
+      z-index: 2001;
     }
 
     .modal-prev { left: 10px; }
     .modal-next { right: 10px; }
 
-    /* --- Efek Slide Geser untuk Gambar Modal --- */
-    .modal img {
-      max-width: 85%;
-      max-height: 85%;
-      border-radius: 15px;
-      box-shadow: 0 0 30px rgba(0, 247, 255, 0.5); /* Shadow biru neon konsisten */
-      
-      /* Animasi Transisi Dasar */
-      transition: transform 0.4s ease-out, opacity 0.4s ease-out;
-      opacity: 1;
-      transform: scale(1);
+    .modal-btn:hover {
+      background: var(--neon-cyan);
+      color: #000;
     }
 
-    /* Class untuk Animasi Keluar (Fading Out & Sliding) */
-    .modal img.fade-out {
+    /* Animations & Scroll Reveal */
+    .reveal {
       opacity: 0;
-      transform: scale(0.9) translateX(50px); /* Mengecil & geser ke kanan */
+      transform: translateY(30px);
+      transition: opacity 0.8s ease, transform 0.8s ease;
     }
 
-    /* Class untuk Animasi Masuk (Fading In & Sliding) */
-    .modal img.fade-in {
-      opacity: 0;
-      transform: scale(1.1) translateX(-50px); /* Membesar & geser dari kiri */
-      animation: slideIn 0.4s ease-out forwards;
-    }
-
-    /* Definisi Animasi Masuk */
-    @keyframes slideIn {
-      to {
-        opacity: 1;
-        transform: scale(1) translateX(0);
-      }
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      padding: 30px;
-      border-radius: 15px;
-      backdrop-filter: blur(10px);
-      margin-bottom: 40px;
-      opacity: 0;
-      transform: translateY(50px);
-      transition: 0.8s;
-    }
-
-    .card.show {
+    .reveal.visible {
       opacity: 1;
       transform: translateY(0);
     }
 
-    h2 {
-      margin-bottom: 20px;
-      color: #00f7ff;
+    @keyframes floating {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-10px); }
     }
 
-    .skill {
-      margin-bottom: 15px;
+    @keyframes blink {
+      0%, 100% { opacity: 1; }
+      50% { opacity: 0; }
     }
 
-    .skill-bar {
-      height: 15px;
-      background: #222;
-      border-radius: 10px;
-      overflow: hidden;
+    @keyframes zoomIn {
+      from { transform: scale(0.8); opacity: 0; }
+      to { transform: scale(1); opacity: 1; }
     }
 
-    .skill-fill {
-      height: 100%;
-      width: 0;
-      background: linear-gradient(90deg, #00f7ff, #ff00c8);
-      border-radius: 10px;
-      transition: width 1.5s ease;
+    @keyframes glitch {
+      0% { transform: translate(0); }
+      20% { transform: translate(-2px, 2px); }
+      40% { transform: translate(-2px, -2px); }
+      60% { transform: translate(2px, 2px); }
+      80% { transform: translate(2px, -2px); }
+      100% { transform: translate(0); }
     }
 
-    .project {
-      margin-bottom: 15px;
-      padding: 15px;
-      border: 1px solid #00f7ff;
-      border-radius: 10px;
-      transition: 0.3s;
+    /* Mobile Responsive Adjustments */
+    @media (max-width: 768px) {
+      .menu-toggle-btn {
+        display: flex;
+      }
+
+      .nav-menu {
+        position: fixed;
+        top: 60px;
+        left: -100%;
+        width: 100%;
+        height: calc(100vh - 60px);
+        background: rgba(8, 7, 17, 0.95);
+        backdrop-filter: blur(20px);
+        -webkit-backdrop-filter: blur(20px);
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 2.5rem;
+        transition: left 0.3s ease-in-out;
+        border-bottom: 1px solid var(--card-border);
+      }
+
+      body.light-mode .nav-menu {
+        background: rgba(240, 244, 255, 0.98);
+      }
+
+      .nav-menu.active {
+        left: 0;
+      }
+
+      .nav-link {
+        font-size: 1.2rem;
+      }
+
+      .glitch-title {
+        font-size: 1.6rem;
+      }
+
+      .subtitle {
+        font-size: 0.95rem;
+      }
+
+      .profile-avatar-wrapper {
+        width: 120px;
+        height: 120px;
+      }
+
+      .swiper {
+        height: 180px;
+      }
     }
-
-    .project:hover {
-      background: rgba(0, 247, 255, 0.1);
-      box-shadow: 0 0 15px #00f7ff;
-    }
-    .demo-info {
-  background: rgba(0, 247, 255, 0.05);
-  border-left: 4px solid #ff00c8;
-  padding: 10px 15px;
-  margin: 15px 0;
-  border-radius: 4px;
-  font-size: 0.9rem;
-  display: inline-block;
-}
-/* --- Light Mode Styles --- */
-/* --- Optimized Light Mode --- */
-body.light-mode {
-  background: #f4f7f6; /* Abu-abu sangat muda agar tidak silau */
-  color: #1a1a1a;      /* Hitam pekat untuk teks utama */
-}
-
-/* Card di Light Mode */
-body.light-mode .card {
-  background: #ffffff;
-  color: #2d3436;
-  border: 1px solid #dcdde1;
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.05);
-}
-
-/* Judul dan Aksen */
-body.light-mode h2 {
-  color: #2c3e50; /* Biru gelap charcoal */
-}
-
-body.light-mode strong {
-  color: #683ad4; /* Ungu tegas untuk highlight */
-}
-
-/* Navigasi Light Mode */
-body.light-mode nav {
-  background: rgba(255, 255, 255, 0.9);
-  border-bottom: 2px solid #683ad4;
-}
-
-body.light-mode nav a {
-  color: #2d3436;
-}
-
-body.light-mode nav a.active {
-  color: #683ad4;
-  font-weight: 700;
-  border-bottom: 2px solid #683ad4;
-}
-
-/* Link di dalam Card */
-body.light-mode section a {
-  color: #683ad4;
-  text-decoration: underline;
-}
-
-/* Footer Light Mode */
-body.light-mode footer {
-  background: #dee2e6;
-  color: #495057;
-}
-
-/* Project Cards di Light Mode */
-body.light-mode .project {
-  background: #f8f9fa;
-  border: 1px solid #dee2e6;
-  color: #2d3436;
-}
-
-body.light-mode .project:hover {
-  background: #ffffff;
-  box-shadow: 0 10px 20px rgba(104, 58, 212, 0.1);
-  border-color: #683ad4;
-}
-body.light-mode #theme-toggle {
-  background: #f1f2f6;
-  border-radius: 50%;
-  padding: 5px;
-}
-
-/* Transisi halus saat ganti mode */
-body {
-  transition: background 0.5s ease, color 0.5s ease;
-}
-
-.demo-info i {
-  color: #ff00c8;
-  margin-right: 8px;
-}
-
-.credential-badge {
-  background: rgba(255, 255, 255, 0.1);
-  padding: 2px 8px;
-  border-radius: 4px;
-  color: #00f7ff;
-  font-family: 'monospace';
-  border: 1px solid rgba(0, 247, 255, 0.3);
-}
-
-    /* Modal */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.9);
-      justify-content: center;
-      align-items: center;
-      z-index: 999;
-      animation: fadeIn 0.3s ease;
-    }
-
-    @keyframes fadeIn {
-      from { opacity: 0; }
-      to { opacity: 1; }
-    }
-
-    .modal img {
-      max-width: 80%;
-      max-height: 80%;
-      border-radius: 15px;
-      box-shadow: 0 0 25px cyan;
-    }
-
-    .modal-nav {
-      position: absolute;
-      top: 50%;
-      transform: translateY(-50%);
-      font-size: 40px;
-      color: white;
-      cursor: pointer;
-      padding: 20px;
-      user-select: none;
-    }
-
-    .modal-prev { left: 30px; }
-    .modal-next { right: 30px; }
-    /* Pastikan Modal menutupi seluruh layar termasuk menu */
-    .modal {
-      display: none;
-      position: fixed;
-      inset: 0;
-      background: rgba(0, 0, 0, 0.95); /* Lebih gelap agar fokus ke gambar */
-      justify-content: center;
-      align-items: center;
-      z-index: 2000; /* Angka ini harus lebih tinggi dari z-index nav (1000) */
-      animation: fadeIn 0.3s ease;
-      backdrop-filter: blur(10px);
-    }
-
-    .modal-close {
-      position: fixed; /* Gunakan fixed agar posisi tetap terhadap layar */
-      top: 30px;
-      right: 30px;
-      font-size: 45px;
-      color: #ff00c8; /* Pink neon */
-      cursor: pointer;
-      z-index: 2001; /* Satu tingkat di atas background modal */
-      text-shadow: 0 0 15px #ff00c8;
-      transition: 0.3s;
-      line-height: 1;
-    }
-
-    .modal-close:hover {
-      color: #00f7ff;
-      transform: scale(1.2) rotate(90deg);
-    }
-
-    footer {
-      text-align: center;
-      padding: 30px;
-      background: #0f0c29;
-      margin-top: 50px;
-    }
-
-    /* Swiper overrides */
-   .swiper {
-  width: 100%;
-  height: auto;
-}
-
-.swiper-slide {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
-
-.swiper-slide img {
-  width: 100%;
-  height: auto;
-  object-fit: contain;
-  border-radius: 10px;
-  border: 2px solid #00f7ff;
-}
-    .contact-icon {
-    display: inline-flex;
-    align-items: center;
-    color: #00f7ff;
-    text-decoration: none;
-    transition: transform 0.3s ease;
-  }
-
-  .contact-icon:hover svg {
-    transform: scale(1.2) rotate(-5deg);
-    transition: transform 0.3s ease;
-  }
-
-  .contact-icon svg {
-    margin-right: 8px;
-    transition: transform 0.3s ease;
-  }
-
-  /* Animasi bergerak naik-turun terus menerus (optional) */
-  @keyframes float {
-    0% { transform: translateY(0px); }
-    50% { transform: translateY(-5px); }
-    100% { transform: translateY(0px); }
-  }
-
-  .float svg {
-    animation: float 2s ease-in-out infinite;
-  }
-  /* Container tulisan */
-header {
-  display: flex;
-  flex-direction: column;
-  justify-content: center; /* vertical center */
-  align-items: center;     /* horizontal center */
-  text-align: center;
-  padding: 0;              /* hilangkan padding agar tepat di tengah */
-}
-
-header h1:hover {
-  text-shadow: 
-    2px 0 #ff00c8, 
-    -2px 0 #00f7ff;
-  animation: glitch 0.3s infinite;
-}
-
-@keyframes glitch {
-  0% { transform: translate(0); }
-  20% { transform: translate(-2px, 2px); }
-  40% { transform: translate(-2px, -2px); }
-  60% { transform: translate(2px, 2px); }
-  80% { transform: translate(2px, -2px); }
-  100% { transform: translate(0); }
-}
-.project {
-  position: relative;
-  overflow: hidden;
-  background: rgba(0, 0, 0, 0.3);
-  border: 1px solid rgba(0, 247, 255, 0.3);
-  transition: all 0.4s ease;
-}
-
-.project:hover {
-  transform: translateY(-5px) scale(1.02);
-  border-color: #00f7ff;
-  box-shadow: 0 0 20px rgba(0, 247, 255, 0.4), inset 0 0 10px rgba(0, 247, 255, 0.2);
-}
-
-/* Tambahan: Label 'Level' atau 'Status' pada proyek */
-.project h3::before {
-  font-size: 0.7rem;
-  color: #ff00c8;
-  vertical-align: middle;
-}
-.project p:first-of-type {
-  display: inline-block;
-  background: #683ad4;
-  color: white;
-  padding: 2px 10px;
-  font-size: 0.8rem;
-  border-radius: 4px;
-  margin-bottom: 10px;
-  font-family: 'Orbitron', sans-serif;
-}
-/* Animasi mengetik */
-@keyframes typing {
-  0% { width: 0; }
-  50% { width: 24ch; }
-  100% { width: 0; }
-}
-
-/* Animasi kursor berkedip */
-@keyframes blink {
-  0%, 100% { border-color: transparent; }
-  50% { border-color: #00f7ff; }
-}
-</style>
+  </style>
 </head>
+<body data-theme="dark">
 
-<body>
-  <!-- Particle background -->
-  <div id="tsparticles" style="position: fixed; inset:0; z-index:-1;"></div>
+  <!-- Interactive Particles Background -->
+  <div id="tsparticles"></div>
 
-  <header>
-    <img src="porto/pasfoto.jpg" alt="Foto Profil" class="profile-pic">
-    <div class="typing-container">
-      <h1>FAHMI PERDANA WICAKSONO</h1>
-      <p>🎮 Web Developer | Leveling Up </p>
+  <!-- Sticky Navigation Bar -->
+  <nav class="navbar">
+    <div class="nav-container">
+      <a href="#" class="nav-logo">FAHMI<span class="highlight">.DEV</span></a>
+      
+      <ul class="nav-menu" id="nav-menu">
+        <li><a href="#about" class="nav-link active">About</a></li>
+        <li><a href="#skills" class="nav-link">Skills</a></li>
+        <li><a href="#quest" class="nav-link">Quest</a></li>
+        <li><a href="#contact" class="nav-link">Contact</a></li>
+      </ul>
+
+      <div class="nav-actions">
+        <button id="theme-toggle" class="theme-btn" aria-label="Toggle Theme">
+          <i class="fa-solid fa-moon" id="theme-icon"></i>
+        </button>
+        <button id="menu-toggle" class="menu-toggle-btn" aria-label="Toggle Navigation">
+          <i class="fa-solid fa-bars"></i>
+        </button>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Header -->
+  <header class="hero-section">
+    <div class="hero-content">
+      <div class="profile-avatar-wrapper">
+        <img src="porto/pasfoto.jpg" alt="Fahmi Perdana Wicaksono" class="profile-avatar">
+      </div>
+      <h1 class="glitch-title" data-text="FAHMI PERDANA WICAKSONO">FAHMI PERDANA WICAKSONO</h1>
+      <p class="subtitle"><span id="typing-text"></span><span class="cursor">|</span></p>
     </div>
   </header>
 
-  <nav>
-  <div class="nav-container">
-    <div class="nav-links">
-      <a href="#about">About</a>
-      <a href="#skills">Skills</a>
-      <a href="#projects">Quest</a>
-      <a href="#contact">Contact</a>
-    </div>
-    <!-- Tombol Dark Mode Baru -->
-    <button id="theme-toggle" class="theme-btn">
-  <!-- Ikon Bulan (Default) -->
-  <svg id="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#00f7ff" style="filter: drop-shadow(0 0 5px #00f7ff);">
-    <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
-  </svg>
-  <!-- Ikon Matahari (Sembunyi dulu) -->
-  <svg id="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="#ffaa00" style="display:none; filter: drop-shadow(0 0 8px #ffaa00);">
-    <circle cx="12" cy="12" r="5"></circle>
-    <line x1="12" y1="1" x2="12" y2="3"></line>
-    <line x1="12" y1="21" x2="12" y2="23"></line>
-    <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
-    <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
-    <line x1="1" y1="12" x2="3" y2="12"></line>
-    <line x1="21" y1="12" x2="23" y2="12"></line>
-    <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
-    <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
-  </svg>
-</button>
-  </div>
-</nav>
-
-  <section id="about">
-  <div class="card" style="text-align: justify;">
-    <h2>🧑‍💻 About Me</h2>
-    <p>
-      Halo! Saya <strong>Fahmi Perdana Wicaksono</strong>, seorang <strong>Web Developer</strong> yang berpengalaman membangun website dan aplikasi web yang modern, interaktif, dan responsif. 
-      Saya fokus menciptakan pengalaman pengguna yang optimal melalui desain yang bersih, performa cepat, dan solusi teknis yang tepat.
-    </p>
-    <p><br>
-      Saya selalu bersemangat mempelajari teknologi terbaru dan menerapkannya untuk menciptakan solusi digital yang efisien dan inovatif. 
-      Setiap proyek saya kerjakan dengan detail dan fokus pada kualitas, fungsionalitas, dan kenyamanan pengguna. Dengan pengalaman dalam berbagai proyek web, saya mampu menghadirkan website dan aplikasi yang handal, mudah digunakan, dan sesuai kebutuhan klien.
-  
-    </p>
-  
-  </div>
-</section>
-
-
-  <section id="skills">
-  <div class="card">
-    <h2>⚡ Skills</h2>
-
-    <div class="skill">
-      <p>HTML</p>
-      <div class="skill-bar"><div class="skill-fill" data-width="95%"></div></div>
-    </div>
-    <div class="skill">
-      <p>PHP</p>
-      <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
-    </div>
-    <div class="skill">
-      <p>CSS</p>
-      <div class="skill-bar"><div class="skill-fill" data-width="90%"></div></div>
-    </div>
-    <div class="skill">
-      <p>JavaScript</p>
-      <div class="skill-bar"><div class="skill-fill" data-width="85%"></div></div>
-    </div>
-    <div class="skill">
-      <p>Next.js / React</p>
-      <div class="skill-bar"><div class="skill-fill" data-width="70%"></div></div>
-    </div>
-  </div>
-</section>
-
-
- <section id="projects">
-  <div class="card">
-    <h2>🏆 Completed Quest</h2>
-
-    <!-- PROJECT 1 -->
-    <div class="project">
-      <h3>🕒 Website Absensi Karyawan PT. Srikandi Inti Prakarsa</h3>
-      <p>CodeIgniter + MySQL</p>
-      <p>Website ini digunakan untuk mempermudah absensi karyawan dengan fitur login, rekap absensi, dan laporan otomatis. Fokus pada keamanan data dan user-friendly interface.</p>
-      <div class="demo-info">
-    <i class="fas fa-terminal"></i> <strong>Demo Access:</strong> <br>
-    User: <span class="credential-badge">admin</span> | 
-    Pass: <span class="credential-badge">admin</span>
-  </div>
-
-  <p>Link demo: <a href="https://srikandiabsensi.infinityfree.me/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p><br>
-      <div class="swiper gallery-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="porto/absen1.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/absen2.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/absen3.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/absen4.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/absen5.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/absen6.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/absen7.png" onclick="openModal(this.src)"></div>
-        </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
+  <main class="main-content">
+    
+    <!-- About Section -->
+    <section id="about" class="section reveal">
+      <h2 class="section-title"><i class="fa-solid fa-terminal"></i> About Me</h2>
+      <div class="glass-card about-card">
+        <p class="text-justify">
+          Halo! Saya <strong>Fahmi Perdana Wicaksono</strong>, seorang <strong>Web Developer</strong> yang berpengalaman membangun website dan aplikasi web yang modern, interaktif, dan responsif. Saya fokus menciptakan pengalaman pengguna yang optimal melalui desain yang bersih, performa cepat, dan solusi teknis yang tepat.
+        </p>
+        <br>
+        <p class="text-justify">
+          Saya selalu bersemangat mempelajari teknologi terbaru dan menerapkannya untuk menciptakan solusi digital yang efisien dan inovatif. Setiap proyek saya kerjakan dengan detail dan fokus pada kualitas, fungsionalitas, dan kenyamanan pengguna. Dengan pengalaman dalam berbagai proyek web, saya mampu menghadirkan website dan aplikasi yang handal, mudah digunakan, dan sesuai kebutuhan klien.
+        </p>
       </div>
-    </div>
+    </section>
 
-    <!-- PROJECT 2 -->
-     <div class="project">
-      <h3>🚚 Sistem Pengiriman Barang Otomatis Toko Bangunan Sinar Terang BSD</h3>
-      <p>PHP Native + MySQL</p>
-      <p>Sistem ini mengotomatisasi pengiriman barang berdasarkan algoritma heuristik untuk menentukan rute tercepat. Termasuk manajemen stok, tracking pengiriman, dan laporan pengiriman harian.</p>
-      <div class="demo-info">
-    <i class="fas fa-terminal"></i> <strong>Demo Access:</strong> <br>
-    User: <span class="credential-badge">admin</span> | 
-    Pass: <span class="credential-badge">admin</span>
-  </div>
+    <!-- Skills Section -->
+    <section id="skills" class="section reveal">
+      <h2 class="section-title"><i class="fa-solid fa-microchip"></i> Tech Stack & Skills</h2>
+      <div class="skills-category-grid">
+        
+        <!-- Frontend -->
+        <div class="glass-card skills-card">
+          <h3 class="skill-category-title"><i class="fa-solid fa-code"></i> Frontend</h3>
+          
+          <div class="skill-item">
+            <div class="skill-info"><span>HTML5</span><span class="skill-percent">95%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="95%"></div></div>
+          </div>
 
-  <p>Link demo: <a href="https://tbsinarterang.infinityfree.me/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p><br>
-      
+          <div class="skill-item">
+            <div class="skill-info"><span>CSS3</span><span class="skill-percent">90%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="90%"></div></div>
+          </div>
 
-      <div class="swiper gallery-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="porto/kirim1.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/kirim2.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/kirim3.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/kirim4.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/kirim5.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/kirim6.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/kirim7.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/kirim8.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/kirim9.png" onclick="openModal(this.src)"></div>
+          <div class="skill-item">
+            <div class="skill-info"><span>JavaScript</span><span class="skill-percent">85%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="85%"></div></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info"><span>React.js</span><span class="skill-percent">80%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="80%"></div></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info"><span>Next.js</span><span class="skill-percent">75%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="75%"></div></div>
+          </div>
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
 
-    <!-- PROJECT 3 -->
-    <div class="project">
-      <h3>🤖 Chatbot AI</h3>
-      <p>Next.js</p>
-      <p>Chatbot ini memberikan jawaban otomatis. Dirancang untuk membantu pertanyaan umum pengguna dengan UI sederhana dan respons cepat.</p>
-      <br><p>Link demo: <a href="https://chatbotku.vercel.app/" target="_blank" style="color:#00f7ff;text-decoration:underline;">KLIK DISINI</a></p><br>
-  
-      <div class="swiper gallery-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="porto/chat1.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/chat2.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/chat3.png" onclick="openModal(this.src)"></div>
+        <!-- Backend -->
+        <div class="glass-card skills-card">
+          <h3 class="skill-category-title"><i class="fa-solid fa-server"></i> Backend</h3>
+          
+          <div class="skill-item">
+            <div class="skill-info"><span>PHP</span><span class="skill-percent">90%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="90%"></div></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info"><span>CodeIgniter</span><span class="skill-percent">85%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="85%"></div></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info"><span>Laravel</span><span class="skill-percent">80%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="80%"></div></div>
+          </div>
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
 
-    <!-- PROJECT 4 -->
-    <div class="project">
-      <h3>📚 Sistem Informasi Manajemen Perpustakaan</h3>
-      <p>PHP Native + MySQL</p>
-      <p>Fokus utama aplikasi ini adalah memberikan kemudahan bagi pustakawan dalam mengelola data buku, anggota, hingga memproses transaksi peminjaman secara efisien dan terorganisir.
-
-      <div class="swiper gallery-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="porto/perpus1.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/perpus2.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/perpus3.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/perpus4.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/perpus5.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/perpus6.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/perpus7.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/perpus8.png" onclick="openModal(this.src)"></div>
+        <!-- Database -->
+        <div class="glass-card skills-card">
+          <h3 class="skill-category-title"><i class="fa-solid fa-database"></i> Database</h3>
+          
+          <div class="skill-item">
+            <div class="skill-info"><span>MySQL</span><span class="skill-percent">90%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="90%"></div></div>
+          </div>
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
-      </div>
-    </div>
 
-    <!-- PROJECT 5 -->
-    <div class="project">
-      <h3>💰 Sistem Penggajian Karyawan</h3>
-      <p>PHP Native + MySQL</p>
-      <p>Aplikasi ini dirancang untuk meminimalkan risiko kesalahan perhitungan manual serta mempercepat proses distribusi slip gaji kepada seluruh karyawan.</p>
+        <!-- Tools -->
+        <div class="glass-card skills-card">
+          <h3 class="skill-category-title"><i class="fa-solid fa-toolbox"></i> Tools</h3>
+          
+          <div class="skill-item">
+            <div class="skill-info"><span>Git & GitHub</span><span class="skill-percent">85%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="85%"></div></div>
+          </div>
 
-      <div class="swiper gallery-swiper">
-        <div class="swiper-wrapper">
-          <div class="swiper-slide"><img src="porto/gaji1.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/gaji2.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/gaji3.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/gaji4.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/gaji5.png" onclick="openModal(this.src)"></div>
-          <div class="swiper-slide"><img src="porto/gaji6.png" onclick="openModal(this.src)"></div>
+          <div class="skill-item">
+            <div class="skill-info"><span>VS Code</span><span class="skill-percent">95%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="95%"></div></div>
+          </div>
+
+          <div class="skill-item">
+            <div class="skill-info"><span>Figma</span><span class="skill-percent">70%</span></div>
+            <div class="progress-bar-bg"><div class="progress-bar-fill" data-progress="70%"></div></div>
+          </div>
         </div>
-        <div class="swiper-button-prev"></div>
-        <div class="swiper-button-next"></div>
-        <div class="swiper-pagination"></div>
+
       </div>
-    </div>
+    </section>
+    <!-- Quest (Projects) Section -->
+    <section id="quest" class="section reveal">
+      <h2 class="section-title"><i class="fa-solid fa-trophy"></i> Completed Quest</h2>
+      <div class="quest-grid">
 
-   
+        <!-- PROJECT 1 -->
+        <article class="glass-card quest-card">
+          <div class="quest-gallery">
+            <div class="swiper gallery-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="porto/absen1.png" alt="Absensi 1" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/absen2.png" alt="Absensi 2" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/absen3.png" alt="Absensi 3" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/absen4.png" alt="Absensi 4" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/absen5.png" alt="Absensi 5" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/absen6.png" alt="Absensi 6" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/absen7.png" alt="Absensi 7" class="gallery-img"></div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="quest-details">
+            <h3 class="quest-title">Website Absensi Karyawan PT. Srikandi Inti Prakarsa</h3>
+            <span class="tech-tag">CodeIgniter</span>
+            <span class="tech-tag">MySQL</span>
+            <p>Website ini digunakan untuk mempermudah absensi karyawan dengan fitur login, rekap absensi, dan laporan otomatis. Fokus pada keamanan data dan user-friendly interface.</p>
+            <div class="demo-info">
+              <i class="fas fa-terminal"></i> <strong>Demo Access:</strong><br>
+              User: <span class="credential-badge">admin</span> | Pass: <span class="credential-badge">admin</span>
+            </div>
+            <a href="https://srikandiabsensi.infinityfree.me/" target="_blank" rel="noopener" class="btn-demo">LAUNCH DEMO <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </article>
 
-  </div>
-</section>
+        <!-- PROJECT 2 -->
+        <article class="glass-card quest-card">
+          <div class="quest-gallery">
+            <div class="swiper gallery-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="porto/kirim1.png" alt="Pengiriman 1" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/kirim2.png" alt="Pengiriman 2" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/kirim3.png" alt="Pengiriman 3" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/kirim4.png" alt="Pengiriman 4" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/kirim5.png" alt="Pengiriman 5" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/kirim6.png" alt="Pengiriman 6" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/kirim7.png" alt="Pengiriman 7" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/kirim8.png" alt="Pengiriman 8" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/kirim9.png" alt="Pengiriman 9" class="gallery-img"></div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="quest-details">
+            <h3 class="quest-title">Sistem Pengiriman Barang Otomatis Toko Bangunan Sinar Terang BSD</h3>
+            <span class="tech-tag">PHP Native</span>
+            <span class="tech-tag">MySQL</span>
+            <p>Sistem ini mengotomatisasi pengiriman barang berdasarkan algoritma heuristik untuk menentukan rute tercepat. Termasuk manajemen stok, tracking pengiriman, dan laporan pengiriman harian.</p>
+            <div class="demo-info">
+              <i class="fas fa-terminal"></i> <strong>Demo Access:</strong><br>
+              User: <span class="credential-badge">admin</span> | Pass: <span class="credential-badge">admin</span>
+            </div>
+            <a href="https://tbsinarterang.infinityfree.me/" target="_blank" rel="noopener" class="btn-demo">LAUNCH DEMO <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </article>
 
+        <!-- PROJECT 3 -->
+        <article class="glass-card quest-card">
+          <div class="quest-gallery">
+            <div class="swiper gallery-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="porto/chat1.png" alt="Chatbot 1" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/chat2.png" alt="Chatbot 2" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/chat3.png" alt="Chatbot 3" class="gallery-img"></div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="quest-details">
+            <h3 class="quest-title">Chatbot AI</h3>
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Express</span>
+            <p>Chatbot ini memberikan jawaban otomatis. Dirancang untuk membantu pertanyaan umum pengguna dengan UI sederhana dan respons cepat.</p>
+            <a href="https://chatbotku.vercel.app/" target="_blank" rel="noopener" class="btn-demo">LAUNCH DEMO <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+          </div>
+        </article>
 
-  <!-- Contact Section -->
-<section id="contact">
-  <div class="card">
-    <h2>📡 Contact</h2>
+        <!-- PROJECT 4 -->
+        <article class="glass-card quest-card">
+          <div class="quest-gallery">
+            <div class="swiper gallery-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="porto/perpus1.png" alt="Perpustakaan 1" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/perpus2.png" alt="Perpustakaan 2" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/perpus3.png" alt="Perpustakaan 3" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/perpus4.png" alt="Perpustakaan 4" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/perpus5.png" alt="Perpustakaan 5" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/perpus6.png" alt="Perpustakaan 6" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/perpus7.png" alt="Perpustakaan 7" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/perpus8.png" alt="Perpustakaan 8" class="gallery-img"></div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="quest-details">
+            <h3 class="quest-title">Sistem Informasi Manajemen Perpustakaan</h3>
+            <span class="tech-tag">PHP Native + MySQL</span>
+            <p>Fokus utama aplikasi ini adalah memberikan kemudahan bagi pustakawan dalam mengelola data buku, anggota, hingga memproses transaksi peminjaman secara efisien dan terorganisir.</p>
+          </div>
+        </article>
 
-   
-  <!-- WhatsApp -->
-  <p>
-    <a href="https://wa.me/6288210841990" target="_blank" style="display: inline-flex; align-items: center; color:#00f7ff; text-decoration:none; margin-bottom: 8px;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#00f7ff" width="20" height="20" style="margin-right:8px;">
-        <path d="M20.52 3.48A11.8 11.8 0 0012 0C5.37 0 0 5.37 0 12c0 2.11.55 4.08 1.5 5.83L0 24l6.43-1.44A11.82 11.82 0 0012 24c6.63 0 12-5.37 12-12 0-3.21-1.25-6.22-3.48-8.52zm-8.45 16.23a9.57 9.57 0 01-5.17-1.54l-.37-.24-3.04.68.65-2.96-.24-.38a9.6 9.6 0 01-1.56-5.14c0-5.3 4.31-9.6 9.6-9.6 2.56 0 4.96 1 6.75 2.78a9.47 9.47 0 012.77 6.77c0 5.29-4.3 9.6-9.6 9.6zm5.31-7.09c-.29-.15-1.7-.84-1.96-.93-.26-.1-.45-.15-.64.15-.18.29-.7.93-.85 1.12-.16.19-.31.21-.59.07a7.4 7.4 0 01-2.17-1.34 8.24 8.24 0 01-1.53-1.9c-.16-.28-.02-.43.13-.58.14-.14.3-.34.45-.51.15-.16.2-.28.3-.47.1-.18.05-.34-.02-.49-.07-.15-.63-1.52-.86-2.08-.23-.55-.47-.47-.64-.48-.16-.01-.35-.01-.54-.01-.19 0-.5.07-.76.36-.26.29-1 1-1 2.44 0 1.44 1.03 2.83 1.18 3.02.15.19 2.04 3.12 4.95 4.37.69.3 1.23.48 1.65.61.69.22 1.32.19 1.82.11.56-.09 1.7-.69 1.94-1.36.24-.67.24-1.24.17-1.36-.07-.12-.26-.19-.54-.34z"/>
-      </svg>
-      WhatsApp
-    </a>
-  </p>
+        <!-- PROJECT 5 -->
+        <article class="glass-card quest-card">
+          <div class="quest-gallery">
+            <div class="swiper gallery-swiper">
+              <div class="swiper-wrapper">
+                <div class="swiper-slide"><img src="porto/gaji1.png" alt="Penggajian 1" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/gaji2.png" alt="Penggajian 2" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/gaji3.png" alt="Penggajian 3" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/gaji4.png" alt="Penggajian 4" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/gaji5.png" alt="Penggajian 5" class="gallery-img"></div>
+                <div class="swiper-slide"><img src="porto/gaji6.png" alt="Penggajian 6" class="gallery-img"></div>
+              </div>
+              <div class="swiper-button-next"></div>
+              <div class="swiper-button-prev"></div>
+              <div class="swiper-pagination"></div>
+            </div>
+          </div>
+          <div class="quest-details">
+            <h3 class="quest-title">Sistem Penggajian Karyawan</h3>
+            <span class="tech-tag">PHP Native + MySQL</span>
+            <p>Aplikasi ini dirancang untuk meminimalkan risiko kesalahan perhitungan manual serta mempercepat proses distribusi slip gaji kepada seluruh karyawan.</p>
+          </div>
+        </article>
 
-  <!-- Instagram dengan ikon resmi SVG -->
-<p>
-  <a href="https://instagram.com/fahmiprdn16" target="_blank" style="display: inline-flex; align-items: center; color:#00f7ff; text-decoration:none;">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 512 512" width="20" height="20" fill="#00f7ff" style="margin-right:8px;">
-      <path d="M349.33 69.33h-186.66C96.22 69.33 69.33 96.22 69.33 162.67v186.66c0 66.44 26.89 93.33 93.34 93.33h186.66c66.44 0 93.33-26.89 93.33-93.33V162.67c0-66.44-26.89-93.34-93.33-93.34zm62.66 280c0 34.51-17.72 52.23-52.23 52.23h-186.66c-34.51 0-52.23-17.72-52.23-52.23V162.67c0-34.51 17.72-52.23 52.23-52.23h186.66c34.51 0 52.23 17.72 52.23 52.23v186.66z"/>
-      <path d="M256 149.33a106.67 106.67 0 1 0 106.67 106.67A106.66 106.66 0 0 0 256 149.33zm0 176a69.33 69.33 0 1 1 69.33-69.33 69.33 69.33 0 0 1-69.33 69.33z"/>
-      <circle cx="390.67" cy="121.33" r="25.6"/>
-    </svg>
-    Instagram
-  </a>
-</p>
+      </div>
+    </section>
 
-  <!-- GitHub -->
-  <p>
-    <a href="https://github.com/fahmipw" target="_blank" style="display: inline-flex; align-items: center; color:#00f7ff; text-decoration:none; margin-bottom: 8px;">
-      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="#00f7ff" width="20" height="20" style="margin-right:8px;">
-        <path d="M12 0C5.37 0 0 5.37 0 12c0 5.3 3.438 9.8 8.205 11.385.6.113.82-.258.82-.577 0-.285-.01-1.04-.015-2.04-3.338.726-4.042-1.61-4.042-1.61-.546-1.385-1.333-1.754-1.333-1.754-1.09-.745.083-.73.083-.73 1.205.085 1.84 1.237 1.84 1.237 1.07 1.834 2.807 1.304 3.492.997.108-.775.418-1.305.762-1.605-2.665-.3-5.466-1.332-5.466-5.93 0-1.31.468-2.38 1.235-3.22-.124-.303-.536-1.523.117-3.176 0 0 1.008-.322 3.3 1.23a11.52 11.52 0 016 0c2.292-1.552 3.3-1.23 3.3-1.23.653 1.653.241 2.873.118 3.176.77.84 1.234 1.91 1.234 3.22 0 4.61-2.803 5.625-5.475 5.922.43.372.814 1.103.814 2.222 0 1.606-.014 2.898-.014 3.293 0 .32.218.694.825.576C20.565 21.796 24 17.3 24 12c0-6.63-5.37-12-12-12z"/>
-      </svg>
-      GitHub
-    </a>
-  </p>
+    <!-- Contact Section -->
+    <section id="contact" class="section reveal">
+      <h2 class="section-title"><i class="fa-solid fa-headset"></i> Establish Connection</h2>
+      <div class="glass-card contact-card" style="text-align: center;">
+        <p>Hubungi saya untuk kolaborasi proyek atau peluang kerja baru.</p>
+        <div class="social-links">
+          <a href="https://wa.me/6288210841990" target="_blank" class="social-icon" aria-label="WhatsApp">
+            <i class="fa-brands fa-whatsapp"></i>
+          </a>
+          <a href="https://instagram.com/fahmiprdn16" target="_blank" class="social-icon" aria-label="Instagram">
+            <i class="fa-brands fa-instagram"></i>
+          </a>
+          <a href="https://github.com/fahmipw" target="_blank" class="social-icon" aria-label="GitHub">
+            <i class="fa-brands fa-github"></i>
+          </a>
+          <a href="mailto:fahmiperdana43@gmail.com" class="social-icon" aria-label="Email">
+            <i class="fa-solid fa-envelope"></i>
+          </a>
+        </div>
+      </div>
+    </section>
 
-  <!-- Email -->
-  <p>
-    <a href="mailto:fahmiperdana43@gmail.com" style="display: inline-flex; align-items: center; color:#00f7ff; text-decoration:none;">
-      <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" fill="#00f7ff" viewBox="0 0 24 24" style="margin-right:8px;">
-        <path d="M12 13.065l-11.964-7.065h23.928l-11.964 7.065zm0 2.935l-12-7.999v12h24v-12l-12 7.999z"/>
-      </svg>
-      Email
-    </a>
-  </p>
+  </main>
 
-  </div>
-</section>
-
-
-
-  <footer>
-    <p>© 2026 Fahmi |  Mode 🎮</p>
+  <!-- Footer -->
+  <footer class="footer">
+    <p>&copy; 2026 | Designed & Developed by <strong>Fahmi Perdana Wicaksono</strong></p>
   </footer>
 
-  <!-- MODAL -->
-  <div id="imageModal" class="modal">
-    <span class="modal-close" onclick="closeModal()">✖</span>
-    <span class="modal-nav modal-prev" onclick="prevImage()">❮</span>
-    <img id="modalImage">
-    <span class="modal-nav modal-next" onclick="nextImage()">❯</span>
+  <!-- Fullscreen Modal Lightbox -->
+  <div id="image-modal" class="modal">
+    <span class="modal-close">&times;</span>
+    <button class="modal-btn modal-prev" aria-label="Previous Image"><i class="fa-solid fa-chevron-left"></i></button>
+    <img class="modal-content" id="modal-img" alt="Enlarged screenshot">
+    <button class="modal-btn modal-next" aria-label="Next Image"><i class="fa-solid fa-chevron-right"></i></button>
   </div>
 
-  <!-- Scripts -->
+  <!-- External Libraries Script -->
+  <script src="https://cdn.jsdelivr.net/npm/tsparticles@2/tsparticles.bundle.min.js"></script>
   <script src="https://cdn.jsdelivr.net/npm/swiper@10/swiper-bundle.min.js"></script>
+
   <script>
-    // Particle JS
-    tsParticles.load("tsparticles", {
-      fullScreen:{enable:false},
-      particles:{
-        number:{value:80,density:{enable:true,area:800}},
-        color:{value:["#00f7ff","#ff00c8","#ffffff"]},
-        shape:{type:"circle"},
-        opacity:{value:0.7},
-        size:{value:{min:1,max:4}},
-        move:{enable:true,speed:1,direction:"none",outModes:"bounce"},
-        links:{enable:true,distance:120,color:"#00f7ff",opacity:0.4,width:1}
-      },
-      interactivity:{
-        events:{onHover:{enable:true,mode:"grab"},onClick:{enable:true,mode:"push"}},
-        modes:{grab:{distance:150,links:{opacity:0.7}},push:{quantity:4}}
-      },
-      retina_detect:true
-    });
+    document.addEventListener('DOMContentLoaded', () => {
 
-   const themeToggle = document.getElementById('theme-toggle');
-const moonIcon = document.getElementById('moon-icon');
-const sunIcon = document.getElementById('sun-icon');
+      // 1. Mobile Menu Drawer Toggle
+      const menuToggleBtn = document.getElementById('menu-toggle');
+      const navMenu = document.getElementById('nav-menu');
+      const menuIcon = menuToggleBtn.querySelector('i');
 
-function updateThemeUI(isLight) {
-    if (isLight) {
-        document.body.classList.add('light-mode');
-        moonIcon.style.display = 'none';   // Sembunyikan bulan
-        sunIcon.style.display = 'block';   // Munculkan matahari
-    } else {
-        document.body.classList.remove('light-mode');
-        moonIcon.style.display = 'block';  // Munculkan bulan
-        sunIcon.style.display = 'none';    // Sembunyikan matahari
-    }
-}
-
-themeToggle.addEventListener('click', () => {
-    const isLight = !document.body.classList.contains('light-mode');
-    updateThemeUI(isLight);
-    localStorage.setItem('theme', isLight ? 'light' : 'dark');
-});
-
-// Cek saat pertama kali buka halaman
-const savedTheme = localStorage.getItem('theme');
-if (savedTheme === 'light') {
-    updateThemeUI(true);
-}
-
-    // Scroll animation
-    const cards = document.querySelectorAll('.card');
-    const skillFills = document.querySelectorAll('.skill-fill');
-    window.addEventListener('scroll', ()=>{
-      const triggerBottom = window.innerHeight * 0.8;
-      cards.forEach(card => {
-        const boxTop = card.getBoundingClientRect().top;
-        if(boxTop < triggerBottom){
-          card.classList.add('show');
-          skillFills.forEach(fill => fill.style.width = fill.getAttribute('data-width'));
+      menuToggleBtn.addEventListener('click', () => {
+        navMenu.classList.toggle('active');
+        if (navMenu.classList.contains('active')) {
+          menuIcon.className = 'fa-solid fa-xmark';
+        } else {
+          menuIcon.className = 'fa-solid fa-bars';
         }
       });
-    });
 
-    const sections = document.querySelectorAll("section[id]");
-    const navLinks = document.querySelectorAll("nav a");
+      document.querySelectorAll('.nav-link').forEach(link => {
+        link.addEventListener('click', () => {
+          navMenu.classList.remove('active');
+          menuIcon.className = 'fa-solid fa-bars';
+        });
+      });
 
-    const observerOptions = {
-      root: null,
-      rootMargin: "-20% 0px -70% 0px", // Mengunci deteksi di area tengah-atas layar
-      threshold: 0
-    };
-
-    const observer = new IntersectionObserver((entries) => {
-      entries.forEach((entry) => {
-        if (entry.isIntersecting) {
-          const id = entry.target.getAttribute("id");
-          
-          // Reset semua class active
-          navLinks.forEach((link) => {
-            link.classList.remove("active");
-            if (link.getAttribute("href") === `#${id}`) {
-              link.classList.add("active");
+      // 2. tsParticles Background
+      if (typeof tsParticles !== 'undefined') {
+        tsParticles.load("tsparticles", {
+          fpsLimit: 60,
+          particles: {
+            number: { value: 35, density: { enable: true, value_area: 800 } },
+            color: { value: ["#00f7ff", "#ff00c8", "#ffffff"] },
+            shape: { type: "circle" },
+            opacity: { value: 0.5, random: true },
+            size: { value: { min: 1, max: 3 } },
+            move: {
+              enable: true,
+              speed: 1.2,
+              direction: "none",
+              outModes: "bounce"
+            },
+            line_linked: {
+              enable: true,
+              distance: 130,
+              color: "#00f7ff",
+              opacity: 0.25,
+              width: 1
             }
-          });
-        }
-      });
-    }, observerOptions);
-
-    sections.forEach((section) => {
-      observer.observe(section);
-    });
-
-    // Modal
-    let currentImages = [], currentIndex = 0;
-    function openModal(src){
-      const modal = document.getElementById("imageModal");
-      const modalImg = document.getElementById("modalImage");
-      const gallery = event.target.closest('.swiper-wrapper');
-      currentImages = Array.from(gallery.querySelectorAll("img")).map(img => img.src);
-      currentIndex = currentImages.indexOf(src);
-      modal.style.display = "flex";
-      modalImg.src = src;
-      document.body.style.overflow = "hidden";
-    }
-
-    function closeModal(){
-      document.getElementById("imageModal").style.display = "none";
-      document.body.style.overflow = "auto";
-    }
-
-    function nextImage(){
-      currentIndex = (currentIndex + 1) % currentImages.length;
-      document.getElementById("modalImage").src = currentImages[currentIndex];
-    }
-
-    function prevImage(){
-      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
-      document.getElementById("modalImage").src = currentImages[currentIndex];
-    }
-
-    document.addEventListener("keydown", function(e){
-      const modal = document.getElementById("imageModal");
-      if(modal.style.display === "flex"){
-        if(e.key === "ArrowRight") nextImage();
-        if(e.key === "ArrowLeft") prevImage();
-        if(e.key === "Escape") closeModal();
+          },
+          interactivity: {
+            events: {
+              onhover: { enable: true, mode: "grab" },
+              onclick: { enable: true, mode: "push" }
+            },
+            modes: {
+              grab: { distance: 120, line_linked: { opacity: 0.5 } },
+              push: { quantity: 3 }
+            }
+          },
+          retina_detect: true
+        });
       }
-    });
 
-    // Swiper init
-    document.querySelectorAll('.gallery-swiper').forEach(swiperEl=>{
-      new Swiper(swiperEl,{
-        slidesPerView:1,
-        spaceBetween:20,
-        loop:true,
-        navigation:{
-          nextEl: swiperEl.querySelector('.swiper-button-next'),
-          prevEl: swiperEl.querySelector('.swiper-button-prev'),
-        },
-        pagination:{
-          el: swiperEl.querySelector('.swiper-pagination'),
-          clickable:true,
+      // 3. Typing Effect for Subtitle
+      const typingTextElement = document.getElementById('typing-text');
+      const textArray = ["🎮 Web Developer", "💻 Full Stack Developer", "⚡ Tech Enthusiast"];
+      let textIndex = 0;
+      let charIndex = 0;
+      let isDeleting = false;
+
+      function typeEffect() {
+        const currentText = textArray[textIndex];
+        
+        if (isDeleting) {
+          typingTextElement.textContent = currentText.substring(0, charIndex - 1);
+          charIndex--;
+        } else {
+          typingTextElement.textContent = currentText.substring(0, charIndex + 1);
+          charIndex++;
+        }
+
+        let typeSpeed = isDeleting ? 40 : 90;
+
+        if (!isDeleting && charIndex === currentText.length) {
+          typeSpeed = 2000;
+          isDeleting = true;
+        } else if (isDeleting && charIndex === 0) {
+          isDeleting = false;
+          textIndex = (textIndex + 1) % textArray.length;
+          typeSpeed = 400;
+        }
+
+        setTimeout(typeEffect, typeSpeed);
+      }
+      typeEffect();
+
+      // 4. Dark / Light Mode Toggle
+      const themeToggleBtn = document.getElementById('theme-toggle');
+      const bodyElement = document.body;
+      const themeIcon = document.getElementById('theme-icon');
+
+      const savedTheme = localStorage.getItem('theme') || 'dark';
+      setTheme(savedTheme);
+
+      themeToggleBtn.addEventListener('click', () => {
+        const isLight = bodyElement.classList.contains('light-mode');
+        setTheme(isLight ? 'dark' : 'light');
+      });
+
+      function setTheme(theme) {
+        if (theme === 'light') {
+          bodyElement.classList.add('light-mode');
+          themeIcon.className = 'fa-solid fa-sun';
+          localStorage.setItem('theme', 'light');
+        } else {
+          bodyElement.classList.remove('light-mode');
+          themeIcon.className = 'fa-solid fa-moon';
+          localStorage.setItem('theme', 'dark');
+        }
+      }
+
+      // 5. Scroll Reveal & Progress Bar Observer
+      const revealElements = document.querySelectorAll('.reveal');
+      const progressBars = document.querySelectorAll('.progress-bar-fill');
+      let animatedSkills = false;
+
+      const sectionObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            entry.target.classList.add('visible');
+
+            if (entry.target.id === 'skills' && !animatedSkills) {
+              progressBars.forEach(bar => {
+                const targetWidth = bar.getAttribute('data-progress');
+                bar.style.width = targetWidth;
+              });
+              animatedSkills = true;
+            }
+          }
+        });
+      }, { threshold: 0.15 });
+
+      revealElements.forEach(el => sectionObserver.observe(el));
+
+      // 6. Active Nav Link Tracking
+      const sections = document.querySelectorAll('section');
+      const navLinks = document.querySelectorAll('.nav-link');
+
+      window.addEventListener('scroll', () => {
+        let currentSection = '';
+
+        sections.forEach(section => {
+          const sectionTop = section.offsetTop - 120;
+          if (window.scrollY >= sectionTop) {
+            currentSection = section.getAttribute('id');
+          }
+        });
+
+        navLinks.forEach(link => {
+          link.classList.remove('active');
+          if (link.getAttribute('href') === `#${currentSection}`) {
+            link.classList.add('active');
+          }
+        });
+      });
+
+      // 7. Initialize Swiper.js
+      if (typeof Swiper !== 'undefined') {
+        document.querySelectorAll('.gallery-swiper').forEach(swiperEl => {
+          new Swiper(swiperEl, {
+            loop: true,
+            pagination: {
+              el: swiperEl.querySelector('.swiper-pagination'),
+              clickable: true,
+            },
+            navigation: {
+              nextEl: swiperEl.querySelector('.swiper-button-next'),
+              prevEl: swiperEl.querySelector('.swiper-button-prev'),
+            },
+          });
+        });
+      }
+
+      // 8. Fullscreen Lightbox Modal
+      const modal = document.getElementById('image-modal');
+      const modalImg = document.getElementById('modal-img');
+      const closeModalBtn = document.querySelector('.modal-close');
+      const prevModalBtn = document.querySelector('.modal-prev');
+      const nextModalBtn = document.querySelector('.modal-next');
+      
+      let currentImageArray = [];
+      let currentImageIndex = 0;
+
+      document.querySelectorAll('.gallery-img').forEach(img => {
+        img.addEventListener('click', (e) => {
+          const currentSwiper = e.target.closest('.swiper');
+          currentImageArray = Array.from(currentSwiper.querySelectorAll('.gallery-img')).map(i => i.src);
+          currentImageIndex = currentImageArray.indexOf(e.target.src);
+          
+          updateModalImage();
+          modal.style.display = 'flex';
+        });
+      });
+
+      function updateModalImage() {
+        modalImg.src = currentImageArray[currentImageIndex];
+      }
+
+      function showNextImage() {
+        if (currentImageArray.length === 0) return;
+        currentImageIndex = (currentImageIndex + 1) % currentImageArray.length;
+        updateModalImage();
+      }
+
+      function showPrevImage() {
+        if (currentImageArray.length === 0) return;
+        currentImageIndex = (currentImageIndex - 1 + currentImageArray.length) % currentImageArray.length;
+        updateModalImage();
+      }
+
+      closeModalBtn.addEventListener('click', () => modal.style.display = 'none');
+      nextModalBtn.addEventListener('click', showNextImage);
+      prevModalBtn.addEventListener('click', showPrevImage);
+
+      modal.addEventListener('click', (e) => {
+        if (e.target === modal) modal.style.display = 'none';
+      });
+
+      document.addEventListener('keydown', (e) => {
+        if (modal.style.display === 'flex') {
+          if (e.key === 'Escape') modal.style.display = 'none';
+          if (e.key === 'ArrowRight') showNextImage();
+          if (e.key === 'ArrowLeft') showPrevImage();
         }
       });
+
     });
   </script>
 </body>
