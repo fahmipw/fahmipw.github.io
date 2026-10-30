@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Portofolio | Fahmi Perdana Wicaksono</title>
+  <title>Portofolio Cyberpunk | Fahmi Perdana Wicaksono</title>
 
   <!-- Google Fonts: Orbitron & Exo 2 -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -324,6 +324,91 @@
       font-weight: 600;
       font-size: 0.95rem;
     }
+    
+.demo-info {
+  width: 100%;
+  max-width: 100%;
+  box-sizing: border-box;
+  padding: 18px;
+  border-radius: 12px;
+  background: rgba(15, 20, 35, 0.9);
+  border: 1px solid rgba(0, 255, 255, 0.2);
+  overflow: hidden;
+}
+
+.demo-header {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  margin-bottom: 18px;
+  font-size: 16px;
+}
+
+.demo-role {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 14px;
+  margin-top: 12px;
+  border-radius: 10px;
+  background: rgba(255, 255, 255, 0.04);
+  box-sizing: border-box;
+  min-width: 0;
+}
+
+.role-title {
+  margin-bottom: 4px;
+}
+
+.admin-role .role-title {
+  color: var(--neon-pink);
+}
+
+.employee-role .role-title {
+  color: var(--neon-cyan);
+}
+
+.credential-row {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  min-width: 0;
+}
+
+.credential-badge {
+  display: inline-block;
+  max-width: 100%;
+  padding: 6px 10px;
+  border-radius: 6px;
+  background: rgba(0, 255, 255, 0.08);
+  overflow-wrap: anywhere;
+  word-break: break-word;
+  box-sizing: border-box;
+}
+
+/* Tampilan HP */
+@media (max-width: 480px) {
+  .demo-info {
+    padding: 12px;
+  }
+
+  .demo-role {
+    padding: 12px;
+  }
+
+  .credential-row {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 5px;
+  }
+
+  .credential-badge {
+    width: 100%;
+  }
+}
+
 
     .progress-bar-bg {
       width: 100%;
@@ -828,12 +913,35 @@
             <span class="tech-tag">CodeIgniter</span>
             <span class="tech-tag">MySQL</span>
             <p>Website ini digunakan untuk mempermudah absensi karyawan dengan fitur login, rekap absensi, dan laporan otomatis. Fokus pada keamanan data dan user-friendly interface.</p>
-            <div class="demo-info">
-              <i class="fas fa-terminal"></i> <strong>Demo Access:</strong><br>
-              User: <span class="credential-badge">admin</span> | Pass: <span class="credential-badge">admin</span>
-            </div>
-            <a href="https://srikandiabsensi.infinityfree.me/" target="_blank" rel="noopener" class="btn-demo">LAUNCH DEMO <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
-          </div>
+
+<div class="demo-info">
+  <i class="fas fa-terminal"></i>
+  <strong>Demo Access:</strong>
+
+  <div style="margin-top: 10px;">
+    <strong style="color: var(--neon-pink);">
+      <i class="fas fa-user-shield"></i> ROLE ADMIN
+    </strong>
+    <br>
+    Email:
+    <span class="credential-badge">admin@example.com</span>
+    <br>
+    Password:
+    <span class="credential-badge">admin123</span>
+  </div>
+
+  <div style="margin-top: 12px;">
+    <strong style="color: var(--neon-cyan);">
+      <i class="fas fa-user"></i> ROLE KARYAWAN
+    </strong>
+    <br>
+    Email:
+    <span class="credential-badge">fahmi@example.com</span>
+    <br>
+    Password:
+    <span class="credential-badge">123</span>
+  </div>
+</div>
         </article>
 
         <!-- PROJECT 2 -->
